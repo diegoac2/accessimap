@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_blue"
+    tools:context=".SettingsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="top">
+
+        <TextView
+            android:id="@+id/settingsheader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="30dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/sanchez"
+            android:textSize="50sp"
+            android:text="@string/settingsheader"
+            tools:layout_editor_absoluteX="94dp"
+            tools:layout_editor_absoluteY="83dp" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/white" />
+
+        <TextView
+            android:id="@+id/settingsbody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/sanchez"
+            android:textSize="20sp"
+            android:text="@string/settingsbody"
+            tools:layout_editor_absoluteX="94dp"
+            tools:layout_editor_absoluteY="83dp" />
+
+        <Switch
+            android:id="@+id/ramps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/sanchez"
+            android:textSize="25sp"
+            android:text="@string/rampselect" />
+
+        <Switch
+            android:id="@+id/elevators"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/sanchez"
+            android:textSize="25sp"
+            android:text="@string/elevatorselect" />
+
+        <Switch
+            android:id="@+id/bathrooms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/sanchez"
+            android:textSize="25sp"
+            android:text="@string/bathroomselect" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/orange"
+            android:fontFamily="@font/sanchez"
+            android:onClick="accessHomeScreen"
+            android:text="@string/go"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
