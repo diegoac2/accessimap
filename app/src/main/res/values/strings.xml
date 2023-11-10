@@ -12,4 +12,6 @@
     <string name="bathroomselect">Accessible Bathroom Locations</string>
     <string name="go">GO</string>
     <string name="question">What is a utility?</string>
+    <string name="favorites">Favorite Trips</string>
+    <string name="recents">Recent Trips</string>
 </resources>
