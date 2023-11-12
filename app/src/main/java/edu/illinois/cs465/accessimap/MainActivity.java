@@ -18,7 +18,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void openSettings(View view) {
-        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+//        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+//        startActivity(intent);
+
+        Intent intent = new Intent(MainActivity.this, IndoorNavActivity.class);
         startActivity(intent);
     }
 

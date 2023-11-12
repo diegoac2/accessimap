@@ -22,6 +22,14 @@
             android:name=".HistoryActivity"
             android:exported="false" />
         <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+        <!--        TODO: See if this needs to be here or somewhere else-->
+        <activity
+            android:name=".IndoorNavActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
