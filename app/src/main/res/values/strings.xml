@@ -20,4 +20,5 @@
     <string name="roomnum">Enter Room Number</string>
     <string name="route_ramps">Route with Ramps</string>
     <string name="route_elevators">Route with Elevators</string>
+    <string name="title_activity_outdoor_navigation">OutdoorNavigationActivity</string>
 </resources>
