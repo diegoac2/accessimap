@@ -67,6 +67,44 @@
             android:layout_marginLeft="10dp"
             android:text="@string/roomnum" />
 
+        <TextView
+            android:id="@+id/preference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="@font/sanchez"
+            android:textSize="25sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:text="Default Text"
+            android:visibility="gone" />
+
+        <RadioGroup
+            android:id="@+id/preferOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/preference"
+            android:textColor="@color/white"
+            android:fontFamily="@font/sanchez"
+            android:textSize="25sp"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <RadioButton
+                android:id="@+id/radioButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/route_ramps" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/route_elevators" />
+        </RadioGroup>
+
+
     </LinearLayout>
 
     <LinearLayout

@@ -18,4 +18,6 @@
     <string name="back">Back</string>
     <string name="building">Enter Building Name</string>
     <string name="roomnum">Enter Room Number</string>
+    <string name="route_ramps">Route with Ramps</string>
+    <string name="route_elevators">Route with Elevators</string>
 </resources>

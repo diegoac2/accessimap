@@ -18,11 +18,17 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void openSettings(View view) {
-//        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-//        startActivity(intent);
-
-        Intent intent = new Intent(MainActivity.this, IndoorNavActivity.class);
+        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+        // get switch states from SettingsActivity
+        boolean rampSwitchState = getIntent().getBooleanExtra("RAMP_SWITCH_STATE", false);
+        boolean elevatorSwitchState = getIntent().getBooleanExtra("ELEVATOR_SWITCH_STATE", false);
+        intent.putExtra("RAMP_SWITCH_STATE", rampSwitchState);
+        intent.putExtra("ELEVATOR_SWITCH_STATE", elevatorSwitchState);
         startActivity(intent);
+
+        // Moved the call to IndoorNav to the GO in NewTripActivity
+//        Intent intent = new Intent(MainActivity.this, IndoorNavActivity.class);
+//        startActivity(intent);
     }
 
     public void openHistory(View view) {
