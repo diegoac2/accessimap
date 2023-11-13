@@ -14,7 +14,8 @@ public class SettingsActivity extends AppCompatActivity
     private Switch rampSwitch;
     private Switch elevatorSwitch;
 
-    Intent homeIntent = new Intent(SettingsActivity.this, MainActivity.class);
+    // TODO: Issue with this that makes the program crashes
+    private Intent homeIntent = new Intent(SettingsActivity.this, MainActivity.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -51,6 +52,7 @@ public class SettingsActivity extends AppCompatActivity
     }
 
     public void accessHomeScreen(View view) {
+
         startActivity(homeIntent);
     }
 }
