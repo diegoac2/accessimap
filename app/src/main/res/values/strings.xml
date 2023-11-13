@@ -14,4 +14,8 @@
     <string name="question">What is a utility?</string>
     <string name="favorites">Favorite Trips</string>
     <string name="recents">Recent Trips</string>
+    <string name="make_new_trip">New Trip</string>
+    <string name="back">Back</string>
+    <string name="building">Enter Building Name</string>
+    <string name="roomnum">Enter Room Number</string>
 </resources>
