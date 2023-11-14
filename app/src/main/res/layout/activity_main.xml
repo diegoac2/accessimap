@@ -26,23 +26,23 @@
         android:layout_marginTop="20dp"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintBottom_toTopOf="@+id/btb"
-        tools:layout_editor_absoluteX="1dp">
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="1dp"
+    >
+        <!-- map icon? -->
         <Button
             android:id="@+id/newtrip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
             android:clickable="true"
             android:onClick="startNewTrip"
             android:layout_gravity="center"
-            android:layout_marginBottom="45dp"
-            android:backgroundTint="@color/orange"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/dark_blue"
             android:fontFamily="@font/sanchez"
-            android:text="@string/new_trip"
-            android:textColor="@color/white"
+            android:text="New Trip"
+            android:textColor="@color/orange"
             android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/utility"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.476"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,79 +50,90 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
 
+        <View
+            android:layout_width="350dp"
+            android:layout_height="1dp"
+            android:background="@color/orange"
+            android:layout_gravity="center"/>
+
+<!--        android:drawableLeft="@drawable/white_historyicon"-->
         <Button
-            android:id="@+id/utility"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/favorite"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
             android:clickable="true"
-            android:onClick="findUtility"
+            android:onClick="openFavorite"
             android:layout_gravity="center"
-            android:backgroundTint="@color/orange"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/dark_blue"
             android:fontFamily="@font/sanchez"
-            android:text="@string/utility"
-            android:textColor="@color/white"
+            android:text="Saved Trips"
+            android:textColor="@color/orange"
             android:textSize="30sp"
-            app:layout_constraintHorizontal_bias="0.822"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.476"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/history"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.683" />
+            app:layout_constraintVertical_bias="1.0" />
 
-    </LinearLayout>
+        <View
+            android:layout_width="350dp"
+            android:layout_height="2dp"
+            android:background="@color/orange"
+            android:layout_gravity="center"/>
 
-
-    <LinearLayout
-        android:id="@+id/btb"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.5">
-
+<!--        android:drawableLeft="@drawable/white_historyicon"-->
         <Button
             android:id="@+id/history"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:backgroundTint="@color/mid_blue"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
             android:clickable="true"
             android:onClick="openHistory"
-            android:drawableTop="@drawable/white_historyicon"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/dark_blue"
             android:fontFamily="@font/sanchez"
-            android:scaleType="fitXY"
-            android:text="@string/history"
-            android:textSize="20sp"
-            app:cornerRadius="0dp" />
+            android:text="Trip History"
+            android:textColor="@color/orange"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.476"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/newtrip"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
+        <View
+            android:layout_width="350dp"
+            android:layout_height="1dp"
+            android:background="@color/orange"
+            android:layout_gravity="center"/>
+
+<!--        android:drawableLeft="@drawable/white_settings"-->
         <Button
             android:id="@+id/settings"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:backgroundTint="@color/mid_blue"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
             android:clickable="true"
             android:onClick="openSettings"
-            android:drawableTop="@drawable/white_settings"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/dark_blue"
             android:fontFamily="@font/sanchez"
-            android:scaleType="fitXY"
-            android:text="@string/settings"
-            android:textSize="20sp"
-            app:cornerRadius="0dp" />
+            android:text="Settings"
+            android:textColor="@color/orange"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.476"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/favorite"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
-        <Button
-            android:id="@+id/help"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:backgroundTint="@color/mid_blue"
-            android:clickable="true"
-            android:onClick="utilityInfo"
-            android:drawableTop="@drawable/white_info"
-            android:fontFamily="@font/sanchez"
-            android:scaleType="fitXY"
-            android:text="@string/help"
-            android:textSize="20sp"
-            app:cornerRadius="0dp" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

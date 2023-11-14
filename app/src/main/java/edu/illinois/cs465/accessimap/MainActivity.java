@@ -31,6 +31,11 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    public void openFavorite(View view) {
+        Intent intent = new Intent(MainActivity.this, FavoriteActivity.class);
+        startActivity(intent);
+    }
+
     public void utilityInfo(View view) {
         // TODO -- popup message
     }
