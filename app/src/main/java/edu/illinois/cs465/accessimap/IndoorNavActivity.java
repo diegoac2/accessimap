@@ -57,41 +57,31 @@ public class IndoorNavActivity extends AppCompatActivity {
             buttons[curr_waypoint + 1].setBackgroundColor(Color.argb(255, 103, 80, 164));
         }
 
-        float[] x_coords = {150f, 450f};
-        float[] y_coords = {950f, 900f};
+        float[] positionsX = {150f, 300f, 450f, 600f};
+        float[] positionsY = {950f, 900f, 850f, 800f};
+
         for (int i = 0; i < num_buttons; i++) {
             int x = i;
             buttons[i].setOnClickListener(new View.OnClickListener() {
                 public void onClick(View arg0) {
-                    if (photoView != null) {
-                        photoView.scrollTo(950, 150);
-                    } else {
-                        Log.e("IndoorNavActivity", "photoView is null");
+                    // Scroll to the specified position
+                    photoView.scrollTo((int) positionsX[x], (int) positionsY[x]);
+
+                    // Update current waypoint
+                    curr_waypoint = x;
+
+                    // Reset button scales
+                    for (int j = 0; j < num_buttons; j++) {
+                        buttons[j].setScaleX(j == curr_waypoint ? 1f : 0.75f);
+                        buttons[j].setScaleY(j == curr_waypoint ? 1f : 0.75f);
                     }
 
-                    if (x != curr_waypoint) {
-                        curr_waypoint = buttons[x].getId();
-                        buttons[x].setScaleX(1f);
-                        buttons[x].setScaleY(1f);
-
-                        if (x - 1 >= 0) {
-                            buttons[x - 1].setScaleX(0.75f);
-                            buttons[x - 1].setScaleY(0.75f);
-                            buttons[x - 1].setEnabled(true);
-                            buttons[x - 1].setBackgroundColor(Color.argb(255, 103, 80, 164));
-                        }
-                        if (x + 1 < buttons.length) {
-                            buttons[x + 1].setScaleX(0.75f);
-                            buttons[x + 1].setScaleY(0.75f);
-                            buttons[x + 1].setEnabled(true);
-                            buttons[x + 1].setBackgroundColor(Color.argb(255, 103, 80, 164));
-                        }
-                        for (int j = 0; j < num_buttons; j++) {
-                            if (j != curr_waypoint) {
-                                buttons[j].setScaleX(0.75f);
-                                buttons[j].setScaleY(0.75f);
-                            }
-                        }
+                    // Enable/disable buttons accordingly
+                    if (curr_waypoint - 1 >= 0) {
+                        buttons[curr_waypoint - 1].setEnabled(true);
+                    }
+                    if (curr_waypoint + 1 < buttons.length) {
+                        buttons[curr_waypoint + 1].setEnabled(true);
                     }
                 }
             });
