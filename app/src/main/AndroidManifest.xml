@@ -28,25 +28,35 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="YOUR_API_KEY" />
 
-        <activity
-            android:name=".OutdoorNavigationActivity"
-            android:exported="false"
-            android:label="@string/title_activity_outdoor_navigation" />
-        <activity
-            android:name=".FindUtilityActivity"
-            android:exported="false" />
+        <!-- Main Screen Buttons Activities -->
         <activity
             android:name=".NewTripActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FavoriteActivity"
             android:exported="false" />
         <activity
             android:name=".HistoryActivity"
             android:exported="false" />
         <activity
             android:name=".SettingsActivity"
-            android:exported="false" /> <!-- TODO: See if this needs to be here or somewhere else -->
+            android:exported="false" />
+
+        <!-- Other Internal Activities -->
+        <activity
+            android:name=".OutdoorNavigationActivity"
+            android:exported="false"
+            android:label="@string/title_activity_outdoor_navigation" />
         <activity
             android:name=".IndoorNavActivity"
             android:exported="false" />
+
+        <!-- TODO: Unused Activities -->
+        <activity
+            android:name=".FindUtilityActivity"
+            android:exported="false" />
+
+        <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
