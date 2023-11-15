@@ -28,24 +28,18 @@
             android:background="@color/white" />
 
         <Switch
-            android:id="@+id/ramps"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             style="@style/SwitchText"
+            android:id="@+id/ramps"
             android:text="@string/rampselect" />
 
         <Switch
             android:id="@+id/elevators"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             style="@style/SwitchText"
             android:text="@string/elevatorselect" />
 
         <Switch
-            android:id="@+id/bathrooms"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             style="@style/SwitchText"
+            android:id="@+id/bathrooms"
             android:text="@string/bathroomselect" />
 
         <TextView
