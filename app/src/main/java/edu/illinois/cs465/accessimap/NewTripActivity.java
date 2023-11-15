@@ -55,10 +55,11 @@ public class NewTripActivity extends AppCompatActivity
 
         // Initialize the buildingRoomMap
         buildingRoomMap = new HashMap<>();
-        buildingRoomMap.put("Building X", generateRoomOptionsForBuildingX());
-        buildingRoomMap.put("Building Y", generateRoomOptionsForBuildingY());
+        buildingRoomMap.put("Campus Instructional Facility", generateRoomOptionsForBuildingX());
+        buildingRoomMap.put("Siebel Center for Design", generateRoomOptionsForBuildingY());
 
         // Set up initial spinner options
+        // TODO: We will probably not have a building to building navigation
         setUpBuildingSpinner(buildingSpinnerFrom);
         setUpBuildingSpinner(buildingSpinnerTo);
 
@@ -97,7 +98,7 @@ public class NewTripActivity extends AppCompatActivity
         spinner.setAdapter(buildingAdapter);
 
         // Set initial selection to "Select a building"
-        spinner.setSelection(buildingAdapter.getPosition("Select a building"));
+        spinner.setSelection(buildingAdapter.getPosition("-- select a building --"));
 
         // Set item selected listener for building Spinners
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -172,27 +173,26 @@ public class NewTripActivity extends AppCompatActivity
     }
     private List<String> generateBuildingOptions() {
         List<String> buildings = new ArrayList<>();
-        buildings.add("Select a building");
-        buildings.add("Building X");
-        buildings.add("Building Y");
+        buildings.add("-- select a building --");
+        buildings.add("Campus Instructional Facility");
+        buildings.add("Siebel Center for Design");
         return buildings;
     }
 
     private List<String> generateRoomOptionsForBuildingX() {
         // TODO: Add your logic to generate room options for Building X
         List<String> rooms = new ArrayList<>();
-        rooms.add("Room X1");
-        rooms.add("Room X2");
-        rooms.add("Room X3");
+//        rooms.add("Room X1");
+//        rooms.add("Room X2");
+//        rooms.add("Room X3");
         return rooms;
     }
 
     private List<String> generateRoomOptionsForBuildingY() {
         // TODO: Add your logic to generate room options for Building Y
         List<String> rooms = new ArrayList<>();
-        rooms.add("Room Y1");
-        rooms.add("Room Y2");
-        rooms.add("Room Y3");
+        rooms.add("Amphitheater");
+        rooms.add("Sunrise Studio 1040");
         return rooms;
     }
     public void accessHomeScreen(View view) {
