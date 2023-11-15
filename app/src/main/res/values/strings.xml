@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">AccessiMap</string>
-    <string name="new_trip">Start New Trip</string>
-    <string name="utility">Find Utility</string>
-    <string name="history">History</string>
+    <string name="new_trip">New Trip</string>
+    <string name="favorite">Saved Trips</string>
+    <string name="history">Trip History</string>
     <string name="settings">Settings</string>
-    <string name="help">Help</string>
+
     <string name="settingsheader">Accessibility Settings</string>
     <string name="settingsbody">NOTE: You can change these at any point in time using the Settings button on the home page</string>
     <string name="rampselect">Routes with Ramps</string>
@@ -12,10 +12,9 @@
     <string name="bathroomselect">Accessible Bathroom Locations</string>
     <string name="go">GO</string>
     <string name="question">What is a utility?</string>
-    <string name="favorites">Favorite Trips</string>
     <string name="recents">Recent Trips</string>
     <string name="make_new_trip">New Trip</string>
-    <string name="back">Back</string>
+    <string name="back">BACK</string>
     <string name="building">Enter Building Name</string>
     <string name="roomnum">Enter Room Number</string>
     <string name="route_ramps">Route with Ramps</string>
