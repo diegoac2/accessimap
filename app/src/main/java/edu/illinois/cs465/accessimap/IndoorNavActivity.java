@@ -1,6 +1,7 @@
 package edu.illinois.cs465.accessimap;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.github.chrisbanes.photoview.PhotoView;
 
 public class IndoorNavActivity extends AppCompatActivity {
-    private String curr_floor = "2";
+    private String curr_floor = "1";
     private int curr_waypoint = 0;
     private PhotoView photoView;
 
@@ -60,7 +61,7 @@ public class IndoorNavActivity extends AppCompatActivity {
             buttons[curr_waypoint + 1].setBackgroundColor(Color.argb(255, 103, 80, 164));
         }
 
-        // TODO: These should probably be global variables
+        // TODO(1): These should probably be global variables that are set by an intent
         // Add functionality to buttons
         float[] positionsX = {150f, 410f, 740f, 810f};
         float[] positionsY = {950f, 900f, 1000f, 1100f};
@@ -108,12 +109,13 @@ public class IndoorNavActivity extends AppCompatActivity {
             layout.addView(buttons[i]);
         }
 
-        // TODO: When doing multi-level navigation, have the end button be on the final floor,
+        // TODO(2): When doing multi-level navigation, have the end button be on the final floor,
         //  and have "UP" and "DOWN" buttons after/before the navigation buttons to go up or down.
         /* PART 2: Other Buttons */
         // Create the end button
         Button end_button = new Button(this);
         end_button.setText("END");
+        end_button.setTextSize(20);
         end_button.setScaleX(0.9f);
         end_button.setScaleY(0.9f);
         end_button.setTextColor(Color.argb(255, 255, 255, 255));
@@ -130,7 +132,10 @@ public class IndoorNavActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                // TODO: Return to the home screen
+                                // Return to the home screen
+                                Intent i = new Intent(IndoorNavActivity.this, MainActivity.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(i);
                             }
                         });
                 builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -145,7 +150,7 @@ public class IndoorNavActivity extends AppCompatActivity {
         });
         layout.addView(end_button);
 
-        // TODO: For part 3 and 4, maybe figure out a way to map the floor plan(s) to the number of waypoints per floor/number of floors
+        // TODO(3): For part 3 and 4, maybe figure out a way to map the floor plan(s) to the number of waypoints per floor/number of floors
         /* PART 3: The Floor */
         TextView floor = findViewById(R.id.curr_floor);
         floor.setText("FLOOR " + curr_floor);
