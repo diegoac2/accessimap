@@ -131,17 +131,11 @@
 
         <Button
             style="@style/FooterButton"
-            android:id="@+id/back"
-            android:onClick="accessHomeScreen"
-            android:drawableTop="@drawable/white_arrow_back"
-            android:text="@string/back" />
-
-        <Button
-            style="@style/FooterButton"
+            android:layout_width="match_parent"
             android:id="@+id/go"
             android:onClick="openIndoorNav"
-            android:drawableTop="@drawable/white_arrow_forward"
-            android:text="@string/go" />
+            android:text="GO !"
+            android:textSize="40sp"/>
 
     </LinearLayout>
 
