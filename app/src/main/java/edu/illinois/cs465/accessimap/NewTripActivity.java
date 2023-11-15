@@ -48,8 +48,8 @@ public class NewTripActivity extends AppCompatActivity
             textView.setVisibility(View.GONE);
             radioGroup.setVisibility(View.GONE);
         }
-        buildingSpinnerFrom = findViewById(R.id.building_spinner_from);
-        roomSpinnerFrom = findViewById(R.id.room_spinner_from);
+//        buildingSpinnerFrom = findViewById(R.id.building_spinner_from);
+//        roomSpinnerFrom = findViewById(R.id.room_spinner_from);
         buildingSpinnerTo = findViewById(R.id.building_spinner_to);
         roomSpinnerTo = findViewById(R.id.room_spinner_to);
 
@@ -60,10 +60,10 @@ public class NewTripActivity extends AppCompatActivity
 
         // Set up initial spinner options
         // TODO: We will probably not have a building to building navigation
-        setUpBuildingSpinner(buildingSpinnerFrom);
+//        setUpBuildingSpinner(buildingSpinnerFrom);
         setUpBuildingSpinner(buildingSpinnerTo);
 
-        setUpRoomSpinner(roomSpinnerFrom, buildingSpinnerFrom);
+//        setUpRoomSpinner(roomSpinnerFrom, buildingSpinnerFrom);
         setUpRoomSpinner(roomSpinnerTo, buildingSpinnerTo);
 
 
@@ -202,8 +202,8 @@ public class NewTripActivity extends AppCompatActivity
     // TODO - fix button linking to according nav page
     public void openIndoorNav(View view) {
         // Retrieve the selected building and room from Spinners
-        String selectedBuildingFrom = buildingSpinnerFrom.getSelectedItem().toString();
-        String selectedRoomFrom = roomSpinnerFrom.getSelectedItem().toString();
+//        String selectedBuildingFrom = buildingSpinnerFrom.getSelectedItem().toString();
+//        String selectedRoomFrom = roomSpinnerFrom.getSelectedItem().toString();
         String selectedBuildingTo = buildingSpinnerTo.getSelectedItem().toString();
         String selectedRoomTo = roomSpinnerTo.getSelectedItem().toString();
 
@@ -211,8 +211,8 @@ public class NewTripActivity extends AppCompatActivity
         Intent intent = new Intent(NewTripActivity.this, IndoorNavActivity.class);
 
         // Pass the selected items as extras in the intent
-        intent.putExtra("SELECTED_BUILDING_FROM", selectedBuildingFrom);
-        intent.putExtra("SELECTED_ROOM_FROM", selectedRoomFrom);
+//        intent.putExtra("SELECTED_BUILDING_FROM", selectedBuildingFrom);
+//        intent.putExtra("SELECTED_ROOM_FROM", selectedRoomFrom);
         intent.putExtra("SELECTED_BUILDING_TO", selectedBuildingTo);
         intent.putExtra("SELECTED_ROOM_TO", selectedRoomTo);
 
