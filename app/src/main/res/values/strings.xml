@@ -6,10 +6,10 @@
     <string name="settings">Settings</string>
 
     <string name="settingsheader">Accessibility Settings</string>
-    <string name="settingsbody">NOTE: You can change these at any point in time using the Settings button on the home page</string>
+    <string name="settingsbody">You can change your settings at any point using the Settings button</string>
     <string name="rampselect">Routes with Ramps</string>
-    <string name="elevatorselect">Elevator Locations</string>
-    <string name="bathroomselect">Accessible Bathroom Locations</string>
+    <string name="elevatorselect">Routes with Elevators</string>
+    <string name="bathroomselect">Accessible Bathrooms</string>
     <string name="go">GO!</string>
     <string name="question">What is a utility?</string>
     <string name="recents">Recent Trips</string>
