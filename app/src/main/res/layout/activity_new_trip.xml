@@ -24,7 +24,7 @@
             <Button
                 android:id="@+id/back_top"
                 style="@style/TopBackButton"
-                android:onClick="openMain" />
+                android:onClick="accessHomeScreen" />
 
             <TextView
                 style="@style/PageTitle"
@@ -124,14 +124,14 @@
         app:layout_constraintVertical_bias="0.5">
 
         <Button
-            style="FooterButton"
+            style="@style/FooterButton"
             android:id="@+id/back"
             android:onClick="accessHomeScreen"
             android:drawableTop="@drawable/white_arrow_back"
             android:text="@string/back" />
 
         <Button
-            style="FooterButton"
+            style="@style/FooterButton"
             android:id="@+id/go"
             android:onClick="openIndoorNav"
             android:drawableTop="@drawable/white_arrow_forward"

@@ -30,7 +30,7 @@
             <Button
                 style="@style/TopBackButton"
                 android:id="@+id/back_top"
-                android:onClick="openMain"
+                android:onClick="accessHomeScreen"
                 />
 
             <TextView
