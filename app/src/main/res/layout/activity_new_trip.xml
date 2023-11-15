@@ -51,7 +51,8 @@
             android:id="@+id/building_spinner_from"
             style="@style/AutoCompleteText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40sp"
+            android:background="@drawable/spinner_background"
             android:prompt="@string/building">
         </Spinner>
 
@@ -59,7 +60,8 @@
             android:id="@+id/room_spinner_from"
             style="@style/AutoCompleteText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40sp"
+            android:background="@drawable/spinner_background"
             android:prompt="@string/roomnum">
         </Spinner>
 
@@ -73,16 +75,18 @@
         <Spinner
             android:id="@+id/building_spinner_to"
             style="@style/AutoCompleteText"
+            android:background="@drawable/spinner_background"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40sp"
             android:prompt="@string/building">
         </Spinner>
 
         <Spinner
             android:id="@+id/room_spinner_to"
             style="@style/AutoCompleteText"
+            android:background="@drawable/spinner_background"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40sp"
             android:prompt="@string/roomnum">
         </Spinner>
 
