@@ -26,6 +26,12 @@ public class IndoorNavActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_indoor_nav);
 
+        // Fetch Data
+        String selectedBuildingFrom = getIntent().getStringExtra("SELECTED_BUILDING_FROM");
+        String selectedRoomFrom = getIntent().getStringExtra("SELECTED_ROOM_FROM");
+        String selectedBuildingTo = getIntent().getStringExtra("SELECTED_BUILDING_TO");
+        String selectedRoomTo = getIntent().getStringExtra("SELECTED_ROOM_TO");
+
         /* PART 1: Navigation Buttons */
         // Initialize the buttons for the navigation bar
         int num_buttons = 4;
@@ -153,7 +159,9 @@ public class IndoorNavActivity extends AppCompatActivity {
         // TODO(3): For part 3 and 4, maybe figure out a way to map the floor plan(s) to the number of waypoints per floor/number of floors
         /* PART 3: The Floor */
         TextView floor = findViewById(R.id.curr_floor);
-        floor.setText("FLOOR " + curr_floor);
+        // TODO: This is to prove, need to switch back
+        //floor.setText("FLOOR " + curr_floor);
+        floor.setText(selectedBuildingFrom);
 
         /* PART 4: The Map Viewer */
         // Set up the initial position for the floor plan that the user looks at

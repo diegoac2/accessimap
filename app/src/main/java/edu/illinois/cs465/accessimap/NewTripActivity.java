@@ -201,7 +201,22 @@ public class NewTripActivity extends AppCompatActivity
 
     // TODO - fix button linking to according nav page
     public void openIndoorNav(View view) {
+        // Retrieve the selected building and room from Spinners
+        String selectedBuildingFrom = buildingSpinnerFrom.getSelectedItem().toString();
+        String selectedRoomFrom = roomSpinnerFrom.getSelectedItem().toString();
+        String selectedBuildingTo = buildingSpinnerTo.getSelectedItem().toString();
+        String selectedRoomTo = roomSpinnerTo.getSelectedItem().toString();
+
+        // Create an intent to start the next activity
         Intent intent = new Intent(NewTripActivity.this, IndoorNavActivity.class);
+
+        // Pass the selected items as extras in the intent
+        intent.putExtra("SELECTED_BUILDING_FROM", selectedBuildingFrom);
+        intent.putExtra("SELECTED_ROOM_FROM", selectedRoomFrom);
+        intent.putExtra("SELECTED_BUILDING_TO", selectedBuildingTo);
+        intent.putExtra("SELECTED_ROOM_TO", selectedRoomTo);
+
+        // Start the next activity
         startActivity(intent);
     }
 
