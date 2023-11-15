@@ -150,7 +150,7 @@
             android:layout_width="match_parent"
             android:id="@+id/go"
             android:onClick="openIndoorNav"
-            android:text="GO !"
+            android:text="@string/go"
             android:textSize="40sp"/>
 
     </LinearLayout>

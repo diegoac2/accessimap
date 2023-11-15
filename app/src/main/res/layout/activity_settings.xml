@@ -19,9 +19,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:paddingTop="30dp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/sanchez"
-            android:textSize="50sp"
+            style="@style/PageTitle"
             android:text="@string/settingsheader"
             tools:layout_editor_absoluteX="94dp"
             tools:layout_editor_absoluteY="83dp" />
@@ -29,7 +27,7 @@
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
-            android:layout_height="5dp"
+            android:layout_height="1dp"
             android:layout_marginTop="20dp"
             android:background="@color/white" />
 
@@ -51,50 +49,42 @@
             android:id="@+id/ramps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/sanchez"
-            android:textSize="25sp"
+            style="@style/SwitchText"
             android:text="@string/rampselect" />
 
         <Switch
             android:id="@+id/elevators"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="15dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/sanchez"
-            android:textSize="25sp"
+            style="@style/SwitchText"
             android:text="@string/elevatorselect" />
 
         <Switch
             android:id="@+id/bathrooms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/sanchez"
-            android:textSize="25sp"
+            style="@style/SwitchText"
             android:text="@string/bathroomselect" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.5">
+
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="@color/orange"
-            android:fontFamily="@font/sanchez"
+            style="@style/FooterButton"
+            android:layout_width="match_parent"
+            android:id="@+id/go"
             android:onClick="accessHomeScreen"
             android:text="@string/go"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:textSize="40sp"/>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
