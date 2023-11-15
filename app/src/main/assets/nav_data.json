@@ -11,9 +11,9 @@
         "Amphitheater": {
           "floor_order": [1, 0],
           "num_waypoints": [1, 3],
-          "x_coords": [[150], [410, 740, 810]],
-          "y_coords": [[950], [900, 1000, 1100]],
-          "zooms": [[7], [2, 7, 7]]
+          "x_coords": [[150], [370, 350, 450]],
+          "y_coords": [[1000], [950, 940, 900]],
+          "zooms": [[7], [7, 7, 7]]
         },
         "Sunrise Studio 1040": {
           "floor_order": [1],

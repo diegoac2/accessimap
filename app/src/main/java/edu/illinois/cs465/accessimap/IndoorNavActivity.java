@@ -1,9 +1,7 @@
 package edu.illinois.cs465.accessimap;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,9 +21,13 @@ import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class IndoorNavActivity extends AppCompatActivity {
-    private int curr_floor_i = 0; // Most of the code will use this
+    private static int curr_floor_i = 0; // Most of the code will use this
     private int curr_floor; // This is the actual floor; used for the floor name
     private int[] floor_order;
     private int curr_waypoint = 0;
@@ -35,6 +37,17 @@ public class IndoorNavActivity extends AppCompatActivity {
     private int[][] zooms;
     private String[] floors;
     private PhotoView photoView;
+
+    private Map<String, Map<String, List<Integer>>> floor_images = new HashMap<String, Map<String, List<Integer>>>() {
+        {
+            put("Siebel Center for Design", new HashMap<String, List<Integer>>() {{
+                List<Integer> temp;
+                temp = Arrays.asList(R.drawable.scd_plan2_floor1, R.drawable.scd_plan2_floorb);
+                put("Amphitheater", temp);
+                temp = Arrays.asList(R.drawable.scd_plan1_floor1);
+                put("Sunrise Studio 1040", temp);
+            }});
+        }};
 
     // https://www.youtube.com/watch?v=5_pTPTC3aMc
     private void loadJson(String building, String room) {
@@ -109,11 +122,6 @@ public class IndoorNavActivity extends AppCompatActivity {
             this.x_coords = x_coords;
             this.y_coords = y_coords;
             this.zooms = zooms;
-
-            Log.e("TAG", "loadJSON result: " + xCoords);
-            Log.e("TAG", "loadJSON result: " + location);
-            Log.e("TAG", "loadJSON floors: " + this.x_coords[0][0]);
-
         }
         catch (Exception e) {
             Log.e("TAG", "loadJSON: error" + e);
@@ -130,7 +138,7 @@ public class IndoorNavActivity extends AppCompatActivity {
         String selectedBuildingTo = getIntent().getStringExtra("SELECTED_BUILDING_TO");
         String selectedRoomTo = getIntent().getStringExtra("SELECTED_ROOM_TO");
 
-        // TODO: This function would need to add accessibility options if we want to see a different path based on navigation settings
+        // TODO(1): This function would need to add accessibility options if we want to see a different path based on navigation settings
         loadJson(selectedBuildingTo, selectedRoomTo);
         curr_floor = floor_order[curr_floor_i];
 
@@ -169,7 +177,6 @@ public class IndoorNavActivity extends AppCompatActivity {
             buttons[curr_waypoint + 1].setBackgroundColor(Color.argb(255, 103, 80, 164));
         }
 
-        // TODO(1): These should probably be global variables that are set by an intent
         // Add functionality to buttons
         int[] curr_x = x_coords[curr_floor_i];
         int[] curr_y = y_coords[curr_floor_i];
@@ -217,8 +224,7 @@ public class IndoorNavActivity extends AppCompatActivity {
             layout.addView(buttons[i]);
         }
 
-        // TODO(2): When doing multi-level navigation, have the end button be on the final floor,
-        //  and have "UP" and "DOWN" buttons after/before the navigation buttons to go up or down.
+        // TODO(2): This needs to be checked for paths that contain three or more floors
         /* PART 3: Other Buttons */
         // Create the end button
         Button end_button = new Button(this);
@@ -241,6 +247,7 @@ public class IndoorNavActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 // Return to the home screen
+                                curr_floor_i = 0; // TODO(3): A small bug arises if the user "leaves" navigation using the swipe motion.
                                 Intent i = new Intent(IndoorNavActivity.this, MainActivity.class);
                                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(i);
@@ -256,9 +263,76 @@ public class IndoorNavActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
-        layout.addView(end_button);
 
-        // TODO(3): For part 3 and 4, maybe figure out a way to map the floor plan(s) to the number of waypoints per floor/number of floors
+        // Create an up button
+        Button up_button = new Button(this);
+        up_button.setText("UP");
+        up_button.setTextSize(20);
+        up_button.setScaleX(0.9f);
+        up_button.setScaleY(0.9f);
+        up_button.setTextColor(Color.argb(255, 255, 255, 255));
+        up_button.setBackgroundColor(Color.argb(255, 0, 191, 0));
+
+        // Create a down button
+        Button down_button = new Button(this);
+        down_button.setText("DOWN");
+        down_button.setTextSize(20);
+        down_button.setScaleX(0.9f);
+        down_button.setScaleY(0.9f);
+        down_button.setTextColor(Color.argb(255, 255, 255, 255));
+        down_button.setBackgroundColor(Color.argb(255, 0, 191, 0));
+
+        // Add buttons to the layout depending on the path the user has chosen
+        if (curr_floor_i+1 < num_waypoints.length) { // Checks the next floor
+            if (floor_order[curr_floor_i+1] > floor_order[curr_floor_i]) {
+                layout.addView(up_button);
+                up_button.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View arg0) {
+                        curr_floor_i++;
+                        startActivity(getIntent());
+                        finish();
+                    }
+                });
+            }
+            else {
+                layout.addView(down_button);
+                down_button.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View arg0) {
+                        curr_floor_i++;
+                        startActivity(getIntent());
+                        finish();
+                    }
+                });
+            }
+        }
+
+        if (curr_floor_i-1 >= 0) {
+            if (floor_order[curr_floor_i-1] > floor_order[curr_floor_i]) {
+                layout.addView(up_button, 0);
+                up_button.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View arg0) {
+                        curr_floor_i--;
+                        startActivity(getIntent());
+                        finish();
+                    }
+                });
+            }
+            else {
+                layout.addView(down_button, 0);
+                down_button.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View arg0) {
+                        curr_floor_i--;
+                        startActivity(getIntent());
+                        finish();
+                    }
+                });
+            }
+        }
+
+        if (curr_floor_i == num_waypoints.length - 1) { // If the user is on the final floor, add the end button
+            layout.addView(end_button);
+        }
+
         /* PART 4: The Floor */
         TextView floor = findViewById(R.id.curr_floor);
         floor.setText(floors[curr_floor]);
@@ -266,7 +340,7 @@ public class IndoorNavActivity extends AppCompatActivity {
         /* PART 5: The Map Viewer */
         // Set up the initial position for the floor plan that the user looks at
         photoView = findViewById(R.id.floor_plan);
-        photoView.setImageResource(R.drawable.scd_p1_f1);
+        photoView.setImageResource(floor_images.get(selectedBuildingTo).get(selectedRoomTo).get(curr_floor_i));
         photoView.setMinimumScale(1);
         photoView.setMaximumScale(10);
 
@@ -275,7 +349,7 @@ public class IndoorNavActivity extends AppCompatActivity {
             @Override
             public void onGlobalLayout() {
                 photoView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                photoView.setScale(7f, 150, 950, false);
+                photoView.setScale((int) curr_zoom[0], (int) curr_x[0], (int) curr_y[0], false);
             }
         });
     }
