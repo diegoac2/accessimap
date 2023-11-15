@@ -3,6 +3,7 @@ package edu.illinois.cs465.accessimap;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 
 public class HistoryActivity extends AppCompatActivity
 {
@@ -12,5 +13,8 @@ public class HistoryActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+    }
+    public void accessHomeScreen(View view) {
+        finish();
     }
 }

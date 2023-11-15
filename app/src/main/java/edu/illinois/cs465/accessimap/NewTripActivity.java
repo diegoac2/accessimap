@@ -36,8 +36,7 @@ public class NewTripActivity extends AppCompatActivity
     }
 
     public void accessHomeScreen(View view) {
-        Intent intent = new Intent(NewTripActivity.this, MainActivity.class);
-        startActivity(intent);
+        finish();
     }
 
     // TODO - fix button linking to according nav page
