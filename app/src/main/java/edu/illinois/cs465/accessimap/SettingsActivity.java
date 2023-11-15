@@ -29,7 +29,7 @@ public class SettingsActivity extends AppCompatActivity
         rampSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                updateText();
+                homeIntent = null;
             }
         });
 
@@ -37,7 +37,7 @@ public class SettingsActivity extends AppCompatActivity
         elevatorSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                updateText();
+                homeIntent = null;
             }
         });
     }
@@ -46,12 +46,15 @@ public class SettingsActivity extends AppCompatActivity
         boolean rampSwitchState = rampSwitch.isChecked();
         boolean elevatorSwitchState = elevatorSwitch.isChecked();
 
+        if (homeIntent == null) {
+            homeIntent = new Intent(SettingsActivity.this, MainActivity.class);
+        }
+
         homeIntent.putExtra("RAMP_SWITCH_STATE", rampSwitchState);
         homeIntent.putExtra("ELEVATOR_SWITCH_STATE", elevatorSwitchState);
     }
 
     public void accessHomeScreen(View view) {
-        homeIntent = new Intent(SettingsActivity.this, MainActivity.class);
         updateText();
         startActivity(homeIntent);
     }
