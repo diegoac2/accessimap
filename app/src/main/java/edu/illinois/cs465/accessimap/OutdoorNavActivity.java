@@ -13,7 +13,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import edu.illinois.cs465.accessimap.databinding.ActivityOutdoorNavigationBinding;
 
-public class OutdoorNavigationActivity extends FragmentActivity implements OnMapReadyCallback {
+public class OutdoorNavActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ActivityOutdoorNavigationBinding binding;

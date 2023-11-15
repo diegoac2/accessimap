@@ -44,7 +44,7 @@
 
         <!-- Other Internal Activities -->
         <activity
-            android:name=".OutdoorNavigationActivity"
+            android:name=".OutdoorNavActivity"
             android:exported="false"
             android:label="@string/title_activity_outdoor_navigation" />
         <activity
