@@ -47,15 +47,23 @@
             tools:layout_editor_absoluteX="94dp"
             tools:layout_editor_absoluteY="83dp" />
 
-        <AutoCompleteTextView
-            android:id="@+id/buildingentry_from"
+        <Spinner
+            android:id="@+id/building_spinner_from"
             style="@style/AutoCompleteText"
-            android:text="@string/building" />
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:background="@drawable/spinner_background"
+            android:prompt="@string/building">
+        </Spinner>
 
-        <AutoCompleteTextView
-            android:id="@+id/roomentry_from"
+        <Spinner
+            android:id="@+id/room_spinner_from"
             style="@style/AutoCompleteText"
-            android:text="@string/roomnum" />
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:background="@drawable/spinner_background"
+            android:prompt="@string/roomnum">
+        </Spinner>
 
         <TextView
             style="@style/HeaderText"
@@ -64,15 +72,23 @@
             tools:layout_editor_absoluteX="94dp"
             tools:layout_editor_absoluteY="83dp" />
 
-        <AutoCompleteTextView
-            android:id="@+id/buildingentry_to"
+        <Spinner
+            android:id="@+id/building_spinner_to"
             style="@style/AutoCompleteText"
-            android:text="@string/building" />
+            android:background="@drawable/spinner_background"
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:prompt="@string/building">
+        </Spinner>
 
-        <AutoCompleteTextView
-            android:id="@+id/roomentry_to"
+        <Spinner
+            android:id="@+id/room_spinner_to"
             style="@style/AutoCompleteText"
-            android:text="@string/roomnum" />
+            android:background="@drawable/spinner_background"
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:prompt="@string/roomnum">
+        </Spinner>
 
         <TextView
             android:id="@+id/preference"
@@ -134,7 +150,7 @@
             android:layout_width="match_parent"
             android:id="@+id/go"
             android:onClick="openIndoorNav"
-            android:text="GO !"
+            android:text="@string/go"
             android:textSize="40sp"/>
 
     </LinearLayout>

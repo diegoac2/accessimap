@@ -10,7 +10,7 @@
     <string name="rampselect">Routes with Ramps</string>
     <string name="elevatorselect">Elevator Locations</string>
     <string name="bathroomselect">Accessible Bathroom Locations</string>
-    <string name="go">GO</string>
+    <string name="go">GO!</string>
     <string name="question">What is a utility?</string>
     <string name="recents">Recent Trips</string>
     <string name="make_new_trip">New Trip</string>

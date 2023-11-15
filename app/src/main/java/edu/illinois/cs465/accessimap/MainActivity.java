@@ -15,15 +15,20 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (SharedPreferencesHelper.isFirstTime(this)) {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
+
+            SharedPreferencesHelper.setFirstTime(this, false);
+
+            // finish(); <-- would prevent users from coming back to the home screen
+        }
     }
 
     public void openSettings(View view) {
         Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
         startActivity(intent);
-
-        // Moved the call to IndoorNav to the GO in NewTripActivity
-//        Intent intent = new Intent(MainActivity.this, IndoorNavActivity.class);
-//        startActivity(intent);
     }
 
     public void openHistory(View view) {
@@ -36,10 +41,6 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
-    public void utilityInfo(View view) {
-        // TODO -- popup message
-    }
-
     public void startNewTrip(View view) {
         Intent intent = new Intent(MainActivity.this, NewTripActivity.class);
         // get switch states from SettingsActivity
@@ -47,11 +48,6 @@ public class MainActivity extends AppCompatActivity
         boolean elevatorSwitchState = getIntent().getBooleanExtra("ELEVATOR_SWITCH_STATE", false);
         intent.putExtra("RAMP_SWITCH_STATE", rampSwitchState);
         intent.putExtra("ELEVATOR_SWITCH_STATE", elevatorSwitchState);
-        startActivity(intent);
-    }
-
-    public void findUtility(View view) {
-        Intent intent = new Intent(MainActivity.this, FindUtilityActivity.class);
         startActivity(intent);
     }
 }
