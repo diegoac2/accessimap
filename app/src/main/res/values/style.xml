@@ -155,4 +155,19 @@
         <item name="android:textSize">25dp</item>
     </style>
 
+    <style name="Button.White" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@android:color/white</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">top</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/sanchez</item>
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>

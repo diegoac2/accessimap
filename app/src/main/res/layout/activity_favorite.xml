@@ -58,8 +58,10 @@
                     app:cardElevation="2dp">
 
                     <!-- Add content to the CardView here -->
-                    <TextView style="@style/CardText"
-                        android:text="@string/favorite"/>
+                    <Button
+                        style="@style/Button.White"
+                        android:text="@string/history"
+                        android:onClick="accessHomeScreen" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -69,8 +71,10 @@
                     app:cardElevation="2dp">
 
                     <!-- Add content to the CardView here -->
-                    <TextView style="@style/CardText"
-                        android:text="@string/favorite"/>
+                    <Button
+                        style="@style/Button.White"
+                        android:text="@string/history"
+                        android:onClick="accessHomeScreen" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -80,8 +84,10 @@
                     app:cardElevation="2dp">
 
                     <!-- Add content to the CardView here -->
-                    <TextView style="@style/CardText"
-                        android:text="@string/favorite"/>
+                    <Button
+                        style="@style/Button.White"
+                        android:text="@string/history"
+                        android:onClick="accessHomeScreen" />
 
                 </androidx.cardview.widget.CardView>
 
