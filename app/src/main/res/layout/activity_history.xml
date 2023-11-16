@@ -60,8 +60,8 @@
                     <!-- Add content to the CardView here -->
                     <Button
                         style="@style/Button.White"
-                        android:text="@string/history"
-                        android:onClick="accessHomeScreen" />
+                        android:text="Siebel Center for Design\nAmphitheater"
+                        android:onClick="openIndoorNav1" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -73,8 +73,8 @@
                     <!-- Add content to the CardView here -->
                     <Button
                         style="@style/Button.White"
-                        android:text="@string/history"
-                        android:onClick="accessHomeScreen" />
+                        android:text="Siebel Center for Design\nSunrise Studio 1040"
+                        android:onClick="openIndoorNav2" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -86,7 +86,7 @@
                     <!-- Add content to the CardView here -->
                     <Button
                         style="@style/Button.White"
-                        android:text="@string/history"
+                        android:text="No Other Trips"
                         android:onClick="accessHomeScreen" />
 
                 </androidx.cardview.widget.CardView>
