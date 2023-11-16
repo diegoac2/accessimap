@@ -26,6 +26,8 @@ public class NewTripActivity extends AppCompatActivity
     // Map to store room options based on the selected building
     private Map<String, List<String>> buildingRoomMap;
 
+    private static final String rampElevatorBody = "Do you prefer routes with ramps or with elevators?";
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -35,12 +37,12 @@ public class NewTripActivity extends AppCompatActivity
         TextView textView = findViewById(R.id.preference);
         RadioGroup radioGroup = findViewById(R.id.preferOptions);
 
-        boolean rampSwitchState = getIntent().getBooleanExtra("RAMP_SWITCH_STATE", false);
-        boolean elevatorSwitchState = getIntent().getBooleanExtra("ELEVATOR_SWITCH_STATE", false);
+        boolean rampSwitchState = getIntent().getBooleanExtra(SettingsActivity.RAMP_SWITCH_STATE, false);
+        boolean elevatorSwitchState = getIntent().getBooleanExtra(SettingsActivity.ELEVATOR_SWITCH_STATE, false);
 
         if (rampSwitchState && elevatorSwitchState)
         {
-            textView.setText("Do you prefer routes with ramps or with elevators?");
+            textView.setText(rampElevatorBody);
             textView.setVisibility(View.VISIBLE);
             radioGroup.setVisibility(View.VISIBLE);
         }

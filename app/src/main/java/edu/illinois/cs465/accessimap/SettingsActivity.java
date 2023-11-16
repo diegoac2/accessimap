@@ -18,9 +18,9 @@ public class SettingsActivity extends AppCompatActivity
     private SharedPreferences sp;
 
     private static final String PREF_NAME = "AccessPrefs";
-    private static final String RAMP_SWITCH_STATE = "rampSwitchState";
-    private static final String ELEVATOR_SWITCH_STATE = "elevatorSwitchState";
-    private static final String BATHROOM_SWITCH_STATE = "bathroomSwitchState";
+    protected static final String RAMP_SWITCH_STATE = "RAMP_SWITCH_STATE";
+    protected static final String ELEVATOR_SWITCH_STATE = "ELEVATOR_SWITCH_STATE";
+    private static final String BATHROOM_SWITCH_STATE = "BATHROOM_SWITCH_STATE";
 
 
     @Override
