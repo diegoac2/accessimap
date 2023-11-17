@@ -82,6 +82,15 @@
         </Spinner>
 
         <Spinner
+            android:id="@+id/utility_spinner_to"
+            style="@style/AutoCompleteText"
+            android:background="@drawable/spinner_background"
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:prompt="@string/enter_utility_type">
+        </Spinner>
+
+        <Spinner
             android:id="@+id/room_spinner_to"
             style="@style/AutoCompleteText"
             android:background="@drawable/spinner_background"
