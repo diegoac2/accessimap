@@ -48,31 +48,6 @@
             tools:layout_editor_absoluteY="83dp" />
 
         <Spinner
-            android:id="@+id/building_spinner_from"
-            style="@style/AutoCompleteText"
-            android:layout_width="match_parent"
-            android:layout_height="40sp"
-            android:background="@drawable/spinner_background"
-            android:prompt="@string/building">
-        </Spinner>
-
-        <Spinner
-            android:id="@+id/room_spinner_from"
-            style="@style/AutoCompleteText"
-            android:layout_width="match_parent"
-            android:layout_height="40sp"
-            android:background="@drawable/spinner_background"
-            android:prompt="@string/roomnum">
-        </Spinner>
-
-        <TextView
-            style="@style/HeaderText"
-            android:id="@+id/settingsbody_to"
-            android:text="TO"
-            tools:layout_editor_absoluteX="94dp"
-            tools:layout_editor_absoluteY="83dp" />
-
-        <Spinner
             android:id="@+id/building_spinner_to"
             style="@style/AutoCompleteText"
             android:background="@drawable/spinner_background"
@@ -82,13 +57,51 @@
         </Spinner>
 
         <Spinner
-            android:id="@+id/utility_spinner_to"
+            android:id="@+id/entrance_spinner"
             style="@style/AutoCompleteText"
-            android:background="@drawable/spinner_background"
             android:layout_width="match_parent"
             android:layout_height="40sp"
-            android:prompt="@string/enter_utility_type">
+            android:background="@drawable/spinner_background"
+            android:prompt="@string/building">
         </Spinner>
+
+        <Spinner
+            android:id="@+id/building_spinner_from"
+            style="@style/AutoCompleteText"
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:background="@drawable/spinner_background"
+            android:prompt="@string/building"
+            android:visibility="invisible">
+        </Spinner>
+
+        <Spinner
+            android:id="@+id/room_spinner_from"
+            style="@style/AutoCompleteText"
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:background="@drawable/spinner_background"
+            android:prompt="@string/roomnum"
+            android:visibility="invisible">
+        </Spinner>
+
+        <TextView
+            style="@style/HeaderText"
+            android:id="@+id/settingsbody_to"
+            android:text="TO"
+            tools:layout_editor_absoluteX="94dp"
+            tools:layout_editor_absoluteY="83dp" />
+
+
+
+<!--        <Spinner-->
+<!--            android:id="@+id/utility_spinner_to"-->
+<!--            style="@style/AutoCompleteText"-->
+<!--            android:background="@drawable/spinner_background"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="40sp"-->
+<!--            android:prompt="@string/enter_utility_type">-->
+<!--        </Spinner>-->
 
         <Spinner
             android:id="@+id/room_spinner_to"
