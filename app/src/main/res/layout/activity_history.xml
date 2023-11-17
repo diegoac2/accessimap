@@ -55,39 +55,55 @@
                 <androidx.cardview.widget.CardView
                     style="@style/Card"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="2dp"
+                    android:onClick="openIndoorNav1"
+                    android:layout_gravity="center"
+                    >
 
-                    <!-- Add content to the CardView here -->
-                    <Button
-                        style="@style/Button.White"
-                        android:text="Siebel Center for Design\nAmphitheater"
-                        android:onClick="openIndoorNav1" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center" >
 
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    style="@style/Card"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="2dp">
-
-                    <!-- Add content to the CardView here -->
-                    <Button
-                        style="@style/Button.White"
-                        android:text="Siebel Center for Design\nSunrise Studio 1040"
-                        android:onClick="openIndoorNav2" />
+                        <TextView style="@style/CardText" android:textStyle="bold" android:textColor="@color/dark_blue" android:text="Siebel Center for Design"/>
+                        <TextView style="@style/CardText" android:text="West Entrance to \n Amphitheater" />
+                    </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     style="@style/Card"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="2dp"
+                    android:onClick="openIndoorNav1"
+                    android:layout_gravity="center"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center" >
+
+                        <TextView style="@style/CardText" android:textStyle="bold" android:textColor="@color/dark_blue" android:text="Siebel Center for Design"/>
+                        <TextView style="@style/CardText" android:text="West Entrance to \n Sunrise Studio 1040" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    style="@style/Card"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="2dp"
+                    android:layout_gravity="center">
 
                     <!-- Add content to the CardView here -->
                     <Button
                         style="@style/Button.White"
                         android:text="No Other Trips"
-                        android:onClick="accessHomeScreen" />
+                        android:onClick="accessHomeScreen"
+                        android:layout_gravity="center"/>
 
                 </androidx.cardview.widget.CardView>
 
