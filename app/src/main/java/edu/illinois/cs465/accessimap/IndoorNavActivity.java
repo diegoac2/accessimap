@@ -46,6 +46,8 @@ public class IndoorNavActivity extends AppCompatActivity {
                 put("Amphitheater", temp);
                 temp = Arrays.asList(R.drawable.scd_plan1_floor1);
                 put("Sunrise Studio 1040", temp);
+                temp = Arrays.asList(R.drawable.scd_plan3_floor1);
+                put("Restroom", temp);
             }});
         }};
 
