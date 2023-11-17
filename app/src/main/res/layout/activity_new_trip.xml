@@ -57,15 +57,6 @@
         </Spinner>
 
         <Spinner
-            android:id="@+id/room_type_spinner_from"
-            style="@style/AutoCompleteText"
-            android:layout_width="match_parent"
-            android:layout_height="40sp"
-            android:background="@drawable/spinner_background"
-            android:prompt="@string/type">
-        </Spinner>
-
-        <Spinner
             android:id="@+id/room_spinner_from"
             style="@style/AutoCompleteText"
             android:layout_width="match_parent"
@@ -88,15 +79,6 @@
             android:layout_width="match_parent"
             android:layout_height="40sp"
             android:prompt="@string/building">
-        </Spinner>
-
-        <Spinner
-            android:id="@+id/room_type_spinner_to"
-            style="@style/AutoCompleteText"
-            android:layout_width="match_parent"
-            android:layout_height="40sp"
-            android:background="@drawable/spinner_background"
-            android:prompt="@string/type">
         </Spinner>
 
         <Spinner

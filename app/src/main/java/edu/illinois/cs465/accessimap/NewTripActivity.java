@@ -195,6 +195,7 @@ public class NewTripActivity extends AppCompatActivity
         List<String> rooms = new ArrayList<>();
         rooms.add("Amphitheater");
         rooms.add("Sunrise Studio 1040");
+        rooms.add("Restroom");
         return rooms;
     }
     public void accessHomeScreen(View view) {
