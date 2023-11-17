@@ -21,7 +21,7 @@
             <Button
                 android:id="@+id/back_top"
                 style="@style/TopBackButton"
-                android:onClick="accessHomeScreen" />
+                android:onClick="accessTripScreen" />
 
             <TextView
                 style="@style/PageTitle"

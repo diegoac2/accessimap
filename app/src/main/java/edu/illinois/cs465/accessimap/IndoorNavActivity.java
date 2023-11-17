@@ -158,15 +158,16 @@ public class IndoorNavActivity extends AppCompatActivity {
         for (int i = 0; i < num_buttons; i++) {
             Button button = buttons[i];
             button.setText(Integer.toString(i + 1));
+            button.setTextSize(22);
             button.setTextColor(Color.argb(255, 255, 255, 255));
 
             if (curr_waypoint != i) {
                 button.setScaleX(0.75f);
                 button.setScaleY(0.75f);
-                button.setBackgroundColor(Color.argb(150, 103, 80, 164));
+                button.setBackgroundColor(Color.argb(150, 86, 174, 255));
                 button.setEnabled(false);
             } else {
-                button.setBackgroundColor(Color.argb(255, 103, 80, 164));
+                button.setBackgroundColor(Color.argb(255, 86, 174, 255));
             }
         }
 
@@ -176,7 +177,7 @@ public class IndoorNavActivity extends AppCompatActivity {
         }
         if (curr_waypoint + 1 < buttons.length) {
             buttons[curr_waypoint + 1].setEnabled(true);
-            buttons[curr_waypoint + 1].setBackgroundColor(Color.argb(255, 103, 80, 164));
+            buttons[curr_waypoint + 1].setBackgroundColor(Color.argb(255, 86, 174, 255));
         }
 
         // Add functionality to buttons
@@ -201,13 +202,13 @@ public class IndoorNavActivity extends AppCompatActivity {
                             buttons[x-1].setScaleX(0.75f);
                             buttons[x-1].setScaleY(0.75f);
                             buttons[x-1].setEnabled(true);
-                            buttons[x-1].setBackgroundColor(Color.argb(255, 103, 80, 164));
+                            buttons[x-1].setBackgroundColor(Color.argb(255, 86, 174, 255));
                         }
                         if (x + 1 < buttons.length) {
                             buttons[x+1].setScaleX(0.75f);
                             buttons[x+1].setScaleY(0.75f);
                             buttons[x+1].setEnabled(true);
-                            buttons[x+1].setBackgroundColor(Color.argb(255, 103, 80, 164));
+                            buttons[x+1].setBackgroundColor(Color.argb(255, 86, 174, 255));
                         }
                         for (int j = 0; j < num_buttons; j++) {
                             if (j != curr_waypoint) {
@@ -273,7 +274,7 @@ public class IndoorNavActivity extends AppCompatActivity {
         up_button.setScaleX(0.9f);
         up_button.setScaleY(0.9f);
         up_button.setTextColor(Color.argb(255, 255, 255, 255));
-        up_button.setBackgroundColor(Color.argb(255, 0, 191, 0));
+        up_button.setBackgroundColor(Color.argb(255, 221, 138, 2));
 
         // Create a down button
         Button down_button = new Button(this);
@@ -282,7 +283,7 @@ public class IndoorNavActivity extends AppCompatActivity {
         down_button.setScaleX(0.9f);
         down_button.setScaleY(0.9f);
         down_button.setTextColor(Color.argb(255, 255, 255, 255));
-        down_button.setBackgroundColor(Color.argb(255, 0, 191, 0));
+        down_button.setBackgroundColor(Color.argb(255, 221, 138, 2));
 
         // Add buttons to the layout depending on the path the user has chosen
         if (curr_floor_i+1 < num_waypoints.length) { // Checks the next floor
@@ -354,5 +355,10 @@ public class IndoorNavActivity extends AppCompatActivity {
                 photoView.setScale((int) curr_zoom[0], (int) curr_x[0], (int) curr_y[0], false);
             }
         });
+    }
+
+    public void accessTripScreen(View view) {
+        curr_floor_i = 0;
+        finish();
     }
 }

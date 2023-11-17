@@ -12,21 +12,21 @@
           "floor_order": [1, 0],
           "num_waypoints": [1, 3],
           "x_coords": [[150], [370, 350, 450]],
-          "y_coords": [[1000], [950, 940, 900]],
+          "y_coords": [[900], [850, 840, 800]],
           "zooms": [[7], [7, 7, 7]]
         },
         "Sunrise Studio 1040": {
           "floor_order": [1],
           "num_waypoints": [4],
           "x_coords": [[150, 410, 740, 810]],
-          "y_coords": [[950, 900, 1000, 1100]],
+          "y_coords": [[850, 800, 900, 1000]],
           "zooms": [[7, 2, 7, 7]]
         },
         "Restroom": {
           "floor_order": [1],
           "num_waypoints": [3],
           "x_coords": [[150, 280, 450]],
-          "y_coords": [[950, 900, 900]],
+          "y_coords": [[850, 800, 800]],
           "zooms": [[7, 4, 8]]
         }
       }
