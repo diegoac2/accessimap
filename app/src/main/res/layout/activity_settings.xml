@@ -46,15 +46,15 @@
             android:id="@+id/settingsbody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:gravity="center"
+            android:fontFamily="sans-serif"
 
-            android:textColor="@color/mid_blue"
-            android:fontFamily="@font/sanchez"
-            android:textSize="18sp"
-            android:text="@string/settingsbody" />
+            android:gravity="center"
+            android:paddingTop="20dp"
+            android:text="@string/settingsbody"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
