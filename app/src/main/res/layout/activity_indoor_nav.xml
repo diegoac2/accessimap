@@ -12,6 +12,33 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
+
+            <Button
+                android:id="@+id/back_top"
+                style="@style/TopBackButton"
+                android:onClick="accessHomeScreen" />
+
+            <TextView
+                style="@style/PageTitle"
+                android:id="@+id/curr_floor"
+                android:layout_marginRight="100dp"
+                android:text="FLOOR 1">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white" />
+
         <!-- https://github.com/Baseflow/PhotoView -->
         <com.github.chrisbanes.photoview.PhotoView
             android:id="@+id/floor_plan"
@@ -26,21 +53,6 @@
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp">
-
-            <TextView
-                android:id="@+id/curr_floor"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:textSize="25dp"
-                android:textAlignment="center"
-                android:textColor="#FFFFFFFF"
-                android:background="@drawable/custom_border"
-                android:text="FLOOR 1">
-
-            </TextView>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
