@@ -36,7 +36,7 @@
             <TextView
                 style="@style/PageTitle"
                 android:text="@string/history"
-                android:layout_marginRight="100dp"
+                android:layout_marginRight="90dp"
                 tools:layout_editor_absoluteX="0dp" />
 
         </LinearLayout>

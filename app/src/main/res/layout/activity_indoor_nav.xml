@@ -26,7 +26,7 @@
             <TextView
                 style="@style/PageTitle"
                 android:id="@+id/curr_floor"
-                android:layout_marginRight="100dp"
+                android:layout_marginRight="90dp"
                 android:text="FLOOR 1">
 
             </TextView>

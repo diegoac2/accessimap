@@ -28,7 +28,7 @@
 
             <TextView
                 style="@style/PageTitle"
-                android:layout_marginRight="100dp"
+                android:layout_marginRight="90dp"
                 android:text="@string/new_trip"
                 tools:layout_editor_absoluteX="0dp" />
 
