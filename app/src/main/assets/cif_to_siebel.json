@@ -1,0 +1,319 @@
+{
+   "geocoded_waypoints" : 
+   [
+      {
+         "geocoder_status" : "OK",
+         "partial_match" : true,
+         "place_id" : "ChIJQ5lPE23XDIgRD6LvRKYCcOY",
+         "types" : 
+         [
+            "establishment",
+            "point_of_interest",
+            "university"
+         ]
+      },
+      {
+         "geocoder_status" : "OK",
+         "partial_match" : true,
+         "place_id" : "ChIJXQMDUA_XDIgRCMznJSyf--c",
+         "types" : 
+         [
+            "establishment",
+            "point_of_interest"
+         ]
+      }
+   ],
+   "routes" : 
+   [
+      {
+         "bounds" : 
+         {
+            "northeast" : 
+            {
+               "lat" : 40.1121981,
+               "lng" : -88.2283403
+            },
+            "southwest" : 
+            {
+               "lat" : 40.1030834,
+               "lng" : -88.23327159999999
+            }
+         },
+         "copyrights" : "Map data ©2023",
+         "legs" : 
+         [
+            {
+               "distance" : 
+               {
+                  "text" : "0.9 mi",
+                  "value" : 1401
+               },
+               "duration" : 
+               {
+                  "text" : "20 mins",
+                  "value" : 1176
+               },
+               "end_address" : "1208 S 4th St, Champaign, IL 61820, USA",
+               "end_location" : 
+               {
+                  "lat" : 40.1030834,
+                  "lng" : -88.23326449999999
+               },
+               "start_address" : "1405 W Springfield Ave, Urbana, IL 61801, USA",
+               "start_location" : 
+               {
+                  "lat" : 40.1121981,
+                  "lng" : -88.2283403
+               },
+               "steps" : 
+               [
+                  {
+                     "distance" : 
+                     {
+                        "text" : "164 ft",
+                        "value" : 50
+                     },
+                     "duration" : 
+                     {
+                        "text" : "1 min",
+                        "value" : 40
+                     },
+                     "end_location" : 
+                     {
+                        "lat" : 40.112196,
+                        "lng" : -88.2288854
+                     },
+                     "html_instructions" : "Head \u003cb\u003ewest\u003c/b\u003e toward \u003cb\u003eS Wright St\u003c/b\u003e",
+                     "polyline" : 
+                     {
+                        "points" : "glysFbboyO?lB"
+                     },
+                     "start_location" : 
+                     {
+                        "lat" : 40.1121981,
+                        "lng" : -88.2283403
+                     },
+                     "travel_mode" : "WALKING"
+                  },
+                  {
+                     "distance" : 
+                     {
+                        "text" : "0.4 mi",
+                        "value" : 583
+                     },
+                     "duration" : 
+                     {
+                        "text" : "8 mins",
+                        "value" : 492
+                     },
+                     "end_location" : 
+                     {
+                        "lat" : 40.1070396,
+                        "lng" : -88.22883470000001
+                     },
+                     "html_instructions" : "Turn \u003cb\u003eleft\u003c/b\u003e onto \u003cb\u003eS Wright St\u003c/b\u003e",
+                     "maneuver" : "turn-left",
+                     "polyline" : 
+                     {
+                        "points" : "glysFpeoyONAD?^CJ?LA\\AV?T?z@?fAAfA?J?L??FtB?l@A`@?T?R@t@@F?B?^?^AvAAvAAbBC"
+                     },
+                     "start_location" : 
+                     {
+                        "lat" : 40.112196,
+                        "lng" : -88.2288854
+                     },
+                     "travel_mode" : "WALKING"
+                  },
+                  {
+                     "distance" : 
+                     {
+                        "text" : "0.1 mi",
+                        "value" : 199
+                     },
+                     "duration" : 
+                     {
+                        "text" : "3 mins",
+                        "value" : 170
+                     },
+                     "end_location" : 
+                     {
+                        "lat" : 40.1068313,
+                        "lng" : -88.231118
+                     },
+                     "html_instructions" : "Turn \u003cb\u003eright\u003c/b\u003e onto \u003cb\u003eE Chalmers St\u003c/b\u003e",
+                     "maneuver" : "turn-right",
+                     "polyline" : 
+                     {
+                        "points" : "_lxsFdeoyOLFDDDD?B@BBD@FDT?bA@dD?~B?^"
+                     },
+                     "start_location" : 
+                     {
+                        "lat" : 40.1070396,
+                        "lng" : -88.22883470000001
+                     },
+                     "travel_mode" : "WALKING"
+                  },
+                  {
+                     "distance" : 
+                     {
+                        "text" : "85 ft",
+                        "value" : 26
+                     },
+                     "duration" : 
+                     {
+                        "text" : "1 min",
+                        "value" : 22
+                     },
+                     "end_location" : 
+                     {
+                        "lat" : 40.1065974,
+                        "lng" : -88.2311126
+                     },
+                     "html_instructions" : "Turn \u003cb\u003eleft\u003c/b\u003e toward \u003cb\u003eS 5th St\u003c/b\u003e",
+                     "maneuver" : "turn-left",
+                     "polyline" : 
+                     {
+                        "points" : "ujxsFnsoyOl@A"
+                     },
+                     "start_location" : 
+                     {
+                        "lat" : 40.1068313,
+                        "lng" : -88.231118
+                     },
+                     "travel_mode" : "WALKING"
+                  },
+                  {
+                     "distance" : 
+                     {
+                        "text" : "230 ft",
+                        "value" : 70
+                     },
+                     "duration" : 
+                     {
+                        "text" : "1 min",
+                        "value" : 59
+                     },
+                     "end_location" : 
+                     {
+                        "lat" : 40.1064091,
+                        "lng" : -88.2317305
+                     },
+                     "html_instructions" : "Turn \u003cb\u003eright\u003c/b\u003e toward \u003cb\u003eS 5th St\u003c/b\u003e",
+                     "maneuver" : "turn-right",
+                     "polyline" : 
+                     {
+                        "points" : "gixsFlsoyO@^?lA@B?B@@@@@@B?V?"
+                     },
+                     "start_location" : 
+                     {
+                        "lat" : 40.1065974,
+                        "lng" : -88.2311126
+                     },
+                     "travel_mode" : "WALKING"
+                  },
+                  {
+                     "distance" : 
+                     {
+                        "text" : "69 ft",
+                        "value" : 21
+                     },
+                     "duration" : 
+                     {
+                        "text" : "1 min",
+                        "value" : 17
+                     },
+                     "end_location" : 
+                     {
+                        "lat" : 40.1064057,
+                        "lng" : -88.2319735
+                     },
+                     "html_instructions" : "Turn \u003cb\u003eright\u003c/b\u003e toward \u003cb\u003eS 5th St\u003c/b\u003e",
+                     "maneuver" : "turn-right",
+                     "polyline" : 
+                     {
+                        "points" : "ahxsFhwoyO?n@"
+                     },
+                     "start_location" : 
+                     {
+                        "lat" : 40.1064091,
+                        "lng" : -88.2317305
+                     },
+                     "travel_mode" : "WALKING"
+                  },
+                  {
+                     "distance" : 
+                     {
+                        "text" : "423 ft",
+                        "value" : 129
+                     },
+                     "duration" : 
+                     {
+                        "text" : "2 mins",
+                        "value" : 110
+                     },
+                     "end_location" : 
+                     {
+                        "lat" : 40.1052438,
+                        "lng" : -88.2319581
+                     },
+                     "html_instructions" : "Turn \u003cb\u003eleft\u003c/b\u003e onto \u003cb\u003eS 5th St\u003c/b\u003e",
+                     "maneuver" : "turn-left",
+                     "polyline" : 
+                     {
+                        "points" : "ahxsFxxoyO`@?Z?^AN?D?rA?`@?"
+                     },
+                     "start_location" : 
+                     {
+                        "lat" : 40.1064057,
+                        "lng" : -88.2319735
+                     },
+                     "travel_mode" : "WALKING"
+                  },
+                  {
+                     "distance" : 
+                     {
+                        "text" : "0.2 mi",
+                        "value" : 323
+                     },
+                     "duration" : 
+                     {
+                        "text" : "4 mins",
+                        "value" : 266
+                     },
+                     "end_location" : 
+                     {
+                        "lat" : 40.1030834,
+                        "lng" : -88.23326449999999
+                     },
+                     "html_instructions" : "Turn \u003cb\u003eright\u003c/b\u003e\u003cdiv style=\"font-size:0.9em\"\u003eDestination will be on the left\u003c/div\u003e",
+                     "maneuver" : "turn-right",
+                     "polyline" : 
+                     {
+                        "points" : "w`xsFvxoyO?r@?n@?p@@F@B?B@@BDBDBBB@D@B@B?B?N?X?N?J@B?B@B@DBB@LJ^^@@@@@@?B?@@@@@@@^?dAAlA?Z?`@A"
+                     },
+                     "start_location" : 
+                     {
+                        "lat" : 40.1052438,
+                        "lng" : -88.2319581
+                     },
+                     "travel_mode" : "WALKING"
+                  }
+               ],
+               "traffic_speed_entry" : [],
+               "via_waypoint" : []
+            }
+         ],
+         "overview_polyline" : 
+         {
+            "points" : "glysFbboyO?lBNAd@CnAC`FAX??FtB?nAAh@@`B@rHIRLDHLf@@hKl@A@^@pADHZ??n@`@?z@AT?tB??bB@x@@FLPPD|@?VDv@p@DDBHtD?|@A"
+         },
+         "summary" : "S Wright St",
+         "warnings" : 
+         [
+            "Walking directions are in beta. Use caution – This route may be missing sidewalks or pedestrian paths."
+         ],
+         "waypoint_order" : []
+      }
+   ],
+   "status" : "OK"
+}

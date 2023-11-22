@@ -21,6 +21,15 @@
             android:orientation="horizontal"
             tools:ignore="MissingConstraints">
 
+            <Spinner
+                android:id="@+id/room_spinner_to2"
+                style="@style/AutoCompleteText"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@drawable/spinner_background"
+                android:prompt="@string/roomnum"></Spinner>
+
             <Button
                 android:id="@+id/back_top"
                 style="@style/TopBackButton"
@@ -48,42 +57,20 @@
             tools:layout_editor_absoluteY="83dp" />
 
         <Spinner
-            android:id="@+id/building_spinner_to"
+            android:id="@+id/building_spinner_from"
             style="@style/AutoCompleteText"
-            android:background="@drawable/spinner_background"
             android:layout_width="match_parent"
-            android:layout_height="40sp"
-            android:prompt="@string/building">
-        </Spinner>
+            android:layout_height="48dp"
+            android:background="@drawable/spinner_background"
+            android:prompt="@string/building"></Spinner>
 
         <Spinner
             android:id="@+id/entrance_spinner"
             style="@style/AutoCompleteText"
             android:layout_width="match_parent"
-            android:layout_height="40sp"
+            android:layout_height="48sp"
             android:background="@drawable/spinner_background"
-            android:prompt="@string/building">
-        </Spinner>
-
-        <Spinner
-            android:id="@+id/building_spinner_from"
-            style="@style/AutoCompleteText"
-            android:layout_width="match_parent"
-            android:layout_height="40sp"
-            android:background="@drawable/spinner_background"
-            android:prompt="@string/building"
-            android:visibility="invisible">
-        </Spinner>
-
-        <Spinner
-            android:id="@+id/room_spinner_from"
-            style="@style/AutoCompleteText"
-            android:layout_width="match_parent"
-            android:layout_height="40sp"
-            android:background="@drawable/spinner_background"
-            android:prompt="@string/roomnum"
-            android:visibility="invisible">
-        </Spinner>
+            android:prompt="@string/building"></Spinner>
 
         <TextView
             style="@style/HeaderText"
@@ -104,13 +91,20 @@
 <!--        </Spinner>-->
 
         <Spinner
+            android:id="@+id/building_spinner_to"
+            style="@style/AutoCompleteText"
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:background="@drawable/spinner_background"
+            android:prompt="@string/roomnum"></Spinner>
+
+        <Spinner
             android:id="@+id/room_spinner_to"
             style="@style/AutoCompleteText"
-            android:background="@drawable/spinner_background"
             android:layout_width="match_parent"
-            android:layout_height="40sp"
-            android:prompt="@string/roomnum">
-        </Spinner>
+            android:layout_height="48sp"
+            android:background="@drawable/spinner_background"
+            android:prompt="@string/roomnum"></Spinner>
 
         <TextView
             android:id="@+id/preference"
