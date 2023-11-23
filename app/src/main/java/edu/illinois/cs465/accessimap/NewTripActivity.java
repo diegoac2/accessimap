@@ -263,18 +263,11 @@ public class NewTripActivity extends AppCompatActivity
             startActivity(intent);
         } else {
             Intent intent = new Intent(NewTripActivity.this, OutdoorNavActivity.class);
-
+            intent.putExtra("SELECTED_BUILDING_TO", selectedBuildingTo);
+            intent.putExtra("SELECTED_ROOM_TO", selectedRoomTo);
             // Start the next activity
             startActivity(intent);
         }
-    }
-
-    public void openOutdoorNav(View view) {
-        // Create an intent to start the next activity
-        Intent intent = new Intent(NewTripActivity.this, OutdoorNavActivity.class);
-
-        // Start the next activity
-        startActivity(intent);
     }
 
 }

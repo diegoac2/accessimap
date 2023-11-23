@@ -5,13 +5,16 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -27,10 +30,6 @@ import com.google.maps.android.ui.AnimationUtil;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.illinois.cs465.accessimap.databinding.ActivityOutdoorNavigationBinding;
@@ -68,14 +67,19 @@ public class OutdoorNavActivity extends FragmentActivity implements OnMapReadyCa
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        ImageButton button = findViewById(R.id.inside);
+        button.setEnabled(false);
+        button.setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
+
         LatLng cif = new LatLng(40.11248375062642, -88.22834920290913);
+        mMap.addMarker(new MarkerOptions().position(cif).title("CIF"));
         currentMarker = mMap.addMarker(new MarkerOptions().position(cif).title("CIF").snippet("CIF building").icon(BitmapFromVector(
                 getApplicationContext(),
                 R.drawable.person)));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cif, 16));
 
         LatLng siebel = new LatLng(40.10296632335999, -88.2327589803859);
-//        mMap.addMarker(new MarkerOptions().position(siebel).title("Siebel"));
+        mMap.addMarker(new MarkerOptions().position(siebel).title("Siebel"));
 
         // TODO: load from route json depending on start and end buildings
 //        String route = loadJSONFromAsset();
@@ -84,25 +88,13 @@ public class OutdoorNavActivity extends FragmentActivity implements OnMapReadyCa
         Log.d("decodedPath", decodedPath.toString());
         mMap.addPolyline(new PolylineOptions().addAll(decodedPath));
 
-//        for (int i = 0; i < decodedPath.size(); i++) {
-//            AnimationUtil.animateMarkerTo(currentMarker, decodedPath.get(i));
-//            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(decodedPath.get(i), 16);
-//            mMap.animateCamera(cameraUpdate);
-//        }
-        final Handler handler = new Handler(Looper.getMainLooper());
         for (int i = 0; i < decodedPath.size(); i++) {
-            int finalI = i;
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    currentMarker.setPosition(decodedPath.get(finalI));
-                }
-            }, 3000);
-//            AnimationUtil.animateMarkerTo(currentMarker, decodedPath.get(i));
-//            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(decodedPath.get(i), 16);
-//            mMap.animateCamera(cameraUpdate);
+            AnimationUtil.animateMarkerTo(currentMarker, decodedPath.get(i));
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(decodedPath.get(i), 16);
+            mMap.animateCamera(cameraUpdate);
         }
-
+        button.setEnabled(true);
+        button.setColorFilter(Color.BLUE, PorterDuff.Mode.MULTIPLY);
 
     }
 
@@ -137,6 +129,18 @@ public class OutdoorNavActivity extends FragmentActivity implements OnMapReadyCa
         // after generating our bitmap we are returning our
         // bitmap.
         return BitmapDescriptorFactory.fromBitmap(bitmap);
+    }
+
+    public void openIndoorNav(View view) {
+        Intent intent = new Intent(OutdoorNavActivity.this, IndoorNavActivity.class);
+
+        String selectedBuildingTo = getIntent().getStringExtra("SELECTED_BUILDING_TO");
+        String selectedRoomTo = getIntent().getStringExtra("SELECTED_ROOM_TO");
+
+        intent.putExtra("SELECTED_BUILDING_TO", selectedBuildingTo);
+        intent.putExtra("SELECTED_ROOM_TO", selectedRoomTo);
+
+        startActivity(intent);
     }
 
 }
