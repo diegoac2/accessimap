@@ -86,7 +86,13 @@ public class OutdoorNavActivity extends FragmentActivity implements OnMapReadyCa
 
         List<LatLng> decodedPath = PolyUtil.decode("glysFbboyO?lBNAd@CnAC`FAX??FtB?nAAh@@`B@rHIRLDHLf@@hKl@A@^@pADHZ??n@`@?z@AT?tB??bB@x@@FLPPD|@?VDv@p@DDBHtD?|@A");
         Log.d("decodedPath", decodedPath.toString());
-        mMap.addPolyline(new PolylineOptions().addAll(decodedPath));
+        PolylineOptions lineOptions = new PolylineOptions();
+        lineOptions.addAll(decodedPath);
+        lineOptions.width(32);
+        lineOptions.color(Color.argb(255,109,224,253));
+        lineOptions.geodesic(true);
+
+        mMap.addPolyline(lineOptions);
 
         for (int i = 0; i < decodedPath.size(); i++) {
             AnimationUtil.animateMarkerTo(currentMarker, decodedPath.get(i));
