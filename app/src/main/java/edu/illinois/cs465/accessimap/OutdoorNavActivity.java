@@ -1,17 +1,29 @@
 package edu.illinois.cs465.accessimap;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.maps.android.PolyUtil;
+import com.google.maps.android.ui.AnimationUtil;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,10 +33,12 @@ import java.util.List;
 
 import edu.illinois.cs465.accessimap.databinding.ActivityOutdoorNavigationBinding;
 
-public class OutdoorNavActivity extends FragmentActivity implements OnMapReadyCallback {
+public class OutdoorNavActivity extends FragmentActivity implements OnMapReadyCallback{
 
     private GoogleMap mMap;
     private ActivityOutdoorNavigationBinding binding;
+
+    private Marker currentMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,69 +66,62 @@ public class OutdoorNavActivity extends FragmentActivity implements OnMapReadyCa
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        LatLng cif = new LatLng(40.1124436,-88.2309168);
-        mMap.addMarker(new MarkerOptions().position(cif).title("CIF"));
+        LatLng cif = new LatLng(40.11248375062642, -88.22834920290913);
+        currentMarker = mMap.addMarker(new MarkerOptions().position(cif).title("CIF").snippet("CIF building").icon(BitmapFromVector(
+                getApplicationContext(),
+                R.drawable.person)));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cif, 16));
 
-        LatLng siebel = new LatLng(40.1026852,-88.2353556);
-        mMap.addMarker(new MarkerOptions().position(siebel).title("Siebel"));
+        LatLng siebel = new LatLng(40.10296632335999, -88.2327589803859);
+//        mMap.addMarker(new MarkerOptions().position(siebel).title("Siebel"));
 
         // TODO: load from route json depending on start and end buildings
 //        String route = loadJSONFromAsset();
 
         List<LatLng> decodedPath = PolyUtil.decode("glysFbboyO?lBNAd@CnAC`FAX??FtB?nAAh@@`B@rHIRLDHLf@@hKl@A@^@pADHZ??n@`@?z@AT?tB??bB@x@@FLPPD|@?VDv@p@DDBHtD?|@A");
-
+        Log.d("decodedPath", decodedPath.toString());
         mMap.addPolyline(new PolylineOptions().addAll(decodedPath));
-    }
 
-    public String loadJSONFromAsset() {
-        String json = null;
-        try {
-            InputStream is = getAssets().open("cif_to_siebel.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
+        for (int i = 0; i < decodedPath.size(); i++) {
+            AnimationUtil.animateMarkerTo(currentMarker, decodedPath.get(i));
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(decodedPath.get(i), 16);
+            mMap.animateCamera(cameraUpdate);
         }
-        return json;
+
+
     }
 
-    private List<LatLng> decodePoly(String encoded) {
+    // https://www.geeksforgeeks.org/how-to-add-custom-marker-to-google-maps-in-android/
+    private BitmapDescriptor
+    BitmapFromVector(Context context, int vectorResId)
+    {
+        // below line is use to generate a drawable.
+        Drawable vectorDrawable = ContextCompat.getDrawable(
+                context, vectorResId);
 
-        List<LatLng> poly = new ArrayList<>();
-        int index = 0, len = encoded.length();
-        int lat = 0, lng = 0;
+        // below line is use to set bounds to our vector
+        // drawable.
+        vectorDrawable.setBounds(
+                0, 0, vectorDrawable.getIntrinsicWidth(),
+                vectorDrawable.getIntrinsicHeight());
 
-        while (index < len) {
-            int b, shift = 0, result = 0;
-            do {
-                b = encoded.charAt(index++) - 63;
-                result |= (b & 0x1f) << shift;
-                shift += 5;
-            } while (b >= 0x20);
-            int dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
-            lat += dlat;
+        // below line is use to create a bitmap for our
+        // drawable which we have added.
+        Bitmap bitmap = Bitmap.createBitmap(
+                vectorDrawable.getIntrinsicWidth(),
+                vectorDrawable.getIntrinsicHeight(),
+                Bitmap.Config.ARGB_8888);
 
-            shift = 0;
-            result = 0;
-            do {
-                b = encoded.charAt(index++) - 63;
-                result |= (b & 0x1f) << shift;
-                shift += 5;
-            } while (b >= 0x20);
-            int dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
-            lng += dlng;
+        // below line is use to add bitmap in our canvas.
+        Canvas canvas = new Canvas(bitmap);
 
-            LatLng p = new LatLng((((double) lat / 1E5)),
-                    (((double) lng / 1E5)));
-            poly.add(p);
-        }
-        return poly;
+        // below line is use to draw our
+        // vector drawable in canvas.
+        vectorDrawable.draw(canvas);
+
+        // after generating our bitmap we are returning our
+        // bitmap.
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
-
 
 }
