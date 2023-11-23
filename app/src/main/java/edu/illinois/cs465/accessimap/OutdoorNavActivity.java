@@ -9,6 +9,8 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -82,10 +84,23 @@ public class OutdoorNavActivity extends FragmentActivity implements OnMapReadyCa
         Log.d("decodedPath", decodedPath.toString());
         mMap.addPolyline(new PolylineOptions().addAll(decodedPath));
 
+//        for (int i = 0; i < decodedPath.size(); i++) {
+//            AnimationUtil.animateMarkerTo(currentMarker, decodedPath.get(i));
+//            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(decodedPath.get(i), 16);
+//            mMap.animateCamera(cameraUpdate);
+//        }
+        final Handler handler = new Handler(Looper.getMainLooper());
         for (int i = 0; i < decodedPath.size(); i++) {
-            AnimationUtil.animateMarkerTo(currentMarker, decodedPath.get(i));
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(decodedPath.get(i), 16);
-            mMap.animateCamera(cameraUpdate);
+            int finalI = i;
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    currentMarker.setPosition(decodedPath.get(finalI));
+                }
+            }, 3000);
+//            AnimationUtil.animateMarkerTo(currentMarker, decodedPath.get(i));
+//            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(decodedPath.get(i), 16);
+//            mMap.animateCamera(cameraUpdate);
         }
 
 
