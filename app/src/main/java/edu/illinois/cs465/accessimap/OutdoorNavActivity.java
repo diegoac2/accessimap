@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -75,8 +76,8 @@ public class OutdoorNavActivity extends FragmentActivity implements OnMapReadyCa
         mMap.addMarker(new MarkerOptions().position(cif).title("CIF"));
         currentMarker = mMap.addMarker(new MarkerOptions().position(cif).title("CIF").snippet("CIF building").icon(BitmapFromVector(
                 getApplicationContext(),
-                R.drawable.person)));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cif, 16));
+                R.drawable.location)));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(40.10869228443283, -88.2306037045529), 16));
 
         LatLng siebel = new LatLng(40.10296632335999, -88.2327589803859);
         mMap.addMarker(new MarkerOptions().position(siebel).title("Siebel"));
@@ -94,13 +95,29 @@ public class OutdoorNavActivity extends FragmentActivity implements OnMapReadyCa
 
         mMap.addPolyline(lineOptions);
 
-        for (int i = 0; i < decodedPath.size(); i++) {
-            AnimationUtil.animateMarkerTo(currentMarker, decodedPath.get(i));
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(decodedPath.get(i), 16);
-            mMap.animateCamera(cameraUpdate);
-        }
-        button.setEnabled(true);
-        button.setColorFilter(Color.BLUE, PorterDuff.Mode.MULTIPLY);
+        Handler h = new Handler();
+        int delay = 500;
+        final int[] i = {0};
+        h.postDelayed(new Runnable(){
+            public void run(){
+
+                if (i[0] < decodedPath.size()) {
+                    AnimationUtil.animateMarkerTo(currentMarker, decodedPath.get(i[0]));
+                    i[0]++;
+                } else {
+                    button.setEnabled(true);
+                    button.setColorFilter(Color.BLUE, PorterDuff.Mode.MULTIPLY);
+                }
+                h.postDelayed(this, delay);
+            }
+        }, delay);
+
+//        for (int i = 0; i < decodedPath.size(); i++) {
+//            AnimationUtil.animateMarkerTo(currentMarker, decodedPath.get(i));
+//            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(decodedPath.get(i), 16);
+//            mMap.animateCamera(cameraUpdate);
+//        }
+
 
     }
 
