@@ -13,9 +13,6 @@
         android:theme="@style/Theme.AccessiMap"
         tools:targetApi="31">
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}" />
 
         <!-- Main Screen Buttons Activities -->
         <activity
@@ -32,9 +29,6 @@
             android:exported="false" />
 
         <!-- Other Internal Activities -->
-        <activity
-            android:name=".OutdoorNavActivity"
-            android:exported="false" />
         <activity
             android:name=".IndoorNavActivity"
             android:exported="false" />

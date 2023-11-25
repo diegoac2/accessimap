@@ -249,25 +249,18 @@ public class NewTripActivity extends AppCompatActivity
         String selectedBuildingTo = buildingSpinnerTo.getSelectedItem().toString();
         String selectedRoomTo = roomSpinnerTo.getSelectedItem().toString();
 
-        if (selectedBuildingFrom.equals(selectedBuildingTo)) {
-            // Create an intent to start the next activity
-            Intent intent = new Intent(NewTripActivity.this, IndoorNavActivity.class);
+        // Create an intent to start the next activity
+        Intent intent = new Intent(NewTripActivity.this, IndoorNavActivity.class);
 
-            // Pass the selected items as extras in the intent
+        // Pass the selected items as extras in the intent
 //        intent.putExtra("SELECTED_BUILDING_FROM", selectedBuildingFrom);
 //        intent.putExtra("SELECTED_ROOM_FROM", selectedRoomFrom);
-            intent.putExtra("SELECTED_BUILDING_TO", selectedBuildingTo);
-            intent.putExtra("SELECTED_ROOM_TO", selectedRoomTo);
+        intent.putExtra("SELECTED_BUILDING_TO", selectedBuildingTo);
+        intent.putExtra("SELECTED_ROOM_TO", selectedRoomTo);
 
-            // Start the next activity
-            startActivity(intent);
-        } else {
-            Intent intent = new Intent(NewTripActivity.this, OutdoorNavActivity.class);
-            intent.putExtra("SELECTED_BUILDING_TO", selectedBuildingTo);
-            intent.putExtra("SELECTED_ROOM_TO", selectedRoomTo);
-            // Start the next activity
-            startActivity(intent);
-        }
+        // Start the next activity
+        startActivity(intent);
+
     }
 
 }
