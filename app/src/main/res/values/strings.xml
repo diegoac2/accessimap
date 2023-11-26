@@ -22,4 +22,6 @@
     <string name="route_elevators">Route with Elevators</string>
     <string name="title_activity_outdoor_navigation">OutdoorNavigationActivity</string>
     <string name="enter_utility_type">Enter Utility Type</string>
+    <string name="select_entrance">Select an Entrance</string>
+
 </resources>
