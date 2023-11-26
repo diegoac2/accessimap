@@ -23,12 +23,12 @@ public class NewTripActivity extends AppCompatActivity
     private Spinner entranceSpinner;
 //    private Spinner roomSpinnerFrom;
     private Spinner buildingSpinnerTo;
-
+    private Spinner roomTypeSpinnerTo;
     private Spinner roomSpinnerTo;
 
     // Map to store room options based on the selected building
     private Map<String, List<String>> buildingRoomMap;
-
+    private Map<String, List<String>> buildingRoomTypeMap;
     private Map<String, List<String>> buildingEntranceMap;
     private static final String rampElevatorBody = "Do you prefer routes with ramps or with elevators?";
 
@@ -59,11 +59,17 @@ public class NewTripActivity extends AppCompatActivity
         buildingSpinnerTo = findViewById(R.id.building_spinner_to);
         roomSpinnerTo = findViewById(R.id.room_spinner_to);
         entranceSpinner = findViewById(R.id.entrance_spinner);
+        roomTypeSpinnerTo = findViewById(R.id.room_type_spinner_to); // Add this line
 
         // Initialize the buildingRoomMap
         buildingRoomMap = new HashMap<>();
         buildingRoomMap.put("Campus Instructional Facility", generateRoomOptionsForBuildingX());
         buildingRoomMap.put("Siebel Center for Design", generateRoomOptionsForBuildingY());
+
+        // Initialize the buildingRoomTypeMap
+        buildingRoomTypeMap = new HashMap<>();
+        buildingRoomTypeMap.put("Campus Instructional Facility", generateRoomTypesForBuildingX());
+        buildingRoomTypeMap.put("Siebel Center for Design", generateRoomTypesForBuildingY());
 
         buildingEntranceMap = new HashMap<>();
         buildingEntranceMap.put("Campus Instructional Facility", generateEntranceOptionsForBuildingX());
@@ -76,10 +82,10 @@ public class NewTripActivity extends AppCompatActivity
 
         // Set up "from" spinner with entrances
         setUpRoomSpinner(entranceSpinner, buildingSpinnerFrom, true);
+        // Set up "to" spinner with room types
+        setUpRoomTypeSpinner(roomTypeSpinnerTo, buildingSpinnerTo);
         // Set up "to" spinner with rooms
-        setUpRoomSpinner(roomSpinnerTo, buildingSpinnerTo, false);
-
-        setUpEntranceSpinner(entranceSpinner, buildingSpinnerTo);
+        setUpRoomSpinner(roomSpinnerTo, roomTypeSpinnerTo, false);
 
         // Call updateEntranceOptions with the initially selected building for "from" spinner
         String selectedBuildingFrom = buildingSpinnerFrom.getSelectedItem().toString();
@@ -104,8 +110,12 @@ public class NewTripActivity extends AppCompatActivity
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String selectedBuilding = (String) parentView.getItemAtPosition(position);
 
+                // Enable/disable the spinners based on the selected building
+                updateSpinnerStatus(selectedBuilding, roomTypeSpinnerTo, roomSpinnerTo);
+
                 // Update room options based on the selected building
-                updateRoomOptions(selectedBuilding, spinner);
+
+                updateRoomOptions(selectedBuilding, roomTypeSpinnerTo.getSelectedItem().toString(), roomSpinnerTo);
             }
 
             @Override
@@ -115,7 +125,7 @@ public class NewTripActivity extends AppCompatActivity
         });
     }
 
-    private void setUpEntranceSpinner(Spinner entranceSpinner, Spinner buildingSpinner) {
+    private void setUpEntranceSpinner(Spinner entranceSpinner, Spinner buildingSpinner, boolean isFrom) {
         // Create ArrayAdapter for entrances
         ArrayAdapter<String> entranceAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
                 generateEntranceOptions());
@@ -130,7 +140,13 @@ public class NewTripActivity extends AppCompatActivity
         entranceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // Handle entrance selection if needed
+                String selectedBuilding = buildingSpinner.getSelectedItem().toString();
+                String selectedEntrance = (String) parentView.getItemAtPosition(position);
+
+                // Call updateEntranceOptions with the selected building for "From" spinner
+                if (isFrom) {
+                    updateEntranceOptions(selectedBuilding, entranceSpinner);
+                }
             }
 
             @Override
@@ -140,8 +156,32 @@ public class NewTripActivity extends AppCompatActivity
         });
     }
 
+    private void setUpRoomTypeSpinner(Spinner spinner, Spinner buildingSpinner) {
+        ArrayAdapter<String> roomTypeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+                generateRoomTypeOptions());
+        roomTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-    private void setUpRoomSpinner(Spinner roomSpinner, Spinner buildingSpinner, boolean isFrom) {
+        spinner.setAdapter(roomTypeAdapter);
+        spinner.setSelection(roomTypeAdapter.getPosition("-- select a room type --"));
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String selectedBuilding = buildingSpinner.getSelectedItem().toString();
+                String selectedRoomType = (String) parentView.getItemAtPosition(position);
+
+                // Update room options based on the selected building and room type
+                updateRoomOptions(selectedBuilding, roomTypeSpinnerTo.getSelectedItem().toString(), roomSpinnerTo);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Do nothing here
+            }
+        });
+    }
+
+    private void setUpRoomSpinner(Spinner roomSpinner, Spinner roomTypeSpinner, boolean isFrom) {
         // Set up room Spinner with an empty list initially
         ArrayAdapter<String> roomAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new ArrayList<>());
         roomAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -161,20 +201,15 @@ public class NewTripActivity extends AppCompatActivity
             }
         });
 
-        // Set item selected listener for building Spinner
-        buildingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        // Set item selected listener for room type Spinner
+        roomTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String selectedBuilding = (String) parentView.getItemAtPosition(position);
+                String selectedBuilding = buildingSpinnerTo.getSelectedItem().toString();
+                String selectedRoomType = (String) parentView.getItemAtPosition(position);
 
-                // Update room options based on the selected building
-                if (isFrom) {
-                    // For the "from" spinner, update with entrances
-                    updateEntranceOptions(selectedBuilding, roomSpinner);
-                } else {
-                    // For the "to" spinner, update with rooms
-                    updateRoomOptions(selectedBuilding, roomSpinner);
-                }
+                // Update room options based on the selected building and room type
+                updateRoomOptions(selectedBuilding, selectedRoomType, roomSpinner);
             }
 
             @Override
@@ -183,13 +218,18 @@ public class NewTripActivity extends AppCompatActivity
             }
         });
     }
-    private void updateRoomOptions(String selectedBuilding, Spinner roomSpinner) {
-        // Update room options based on the selected building
+
+    private void updateRoomOptions(String selectedBuilding, String selectedRoomType, Spinner roomSpinner) {
+        // Update room options based on the selected building and room type
         List<String> roomOptions = buildingRoomMap.get(selectedBuilding);
         ArrayAdapter<String> roomAdapter = (ArrayAdapter<String>) roomSpinner.getAdapter();
+
         if (roomOptions != null) {
+            // Filter room options based on the selected room type
+            List<String> filteredRoomOptions = filterRoomOptionsByType(roomOptions, selectedRoomType);
+
             roomAdapter.clear();
-            roomAdapter.addAll(roomOptions);
+            roomAdapter.addAll(filteredRoomOptions);
             roomAdapter.notifyDataSetChanged();
             roomSpinner.setEnabled(true);
         } else {
@@ -200,6 +240,8 @@ public class NewTripActivity extends AppCompatActivity
             roomSpinner.setEnabled(false);
         }
     }
+
+
     private void updateEntranceOptions(String selectedBuilding, Spinner entranceSpinner) {
         // Update entrance options based on the selected building
         List<String> entranceOptions = buildingEntranceMap.get(selectedBuilding);
@@ -253,6 +295,7 @@ public class NewTripActivity extends AppCompatActivity
         rooms.add("Room X1");
         rooms.add("Room X2");
         rooms.add("Room X3");
+        rooms.add("Fountain");
         return rooms;
     }
 
@@ -264,6 +307,69 @@ public class NewTripActivity extends AppCompatActivity
         rooms.add("Restroom");
         return rooms;
     }
+    private List<String> filterRoomOptionsByType(List<String> roomOptions, String selectedRoomType) {
+        List<String> filteredOptions = new ArrayList<>();
+
+        // Loop through each room option
+        for (String roomOption : roomOptions) {
+            // Implement your filtering logic based on room type
+            // For example, if the room type is "Classroom," only include rooms that belong to classrooms
+            if (isRoomOfType(roomOption, selectedRoomType)) {
+                filteredOptions.add(roomOption);
+            }
+        }
+
+        return filteredOptions;
+    }
+
+    private boolean isRoomOfType(String room, String roomType) {
+        // Implement your specific logic here
+        // For demonstration purposes, this example assumes room names contain keywords for types
+
+        if (roomType.equals("Classroom")) {
+            // Check if the room name contains keywords for classrooms
+            return room.contains("Amphitheater") || room.contains("Sunrise Studio 1040") || room.contains("Room");
+        } else if (roomType.equals("Utility")) {
+            // Check if the room name contains keywords for utility rooms
+            return room.contains("Restroom") || room.contains("Fountain");
+        }
+        return false;
+    }
+
+    private List<String> generateRoomTypeOptions() {
+        List<String> roomTypes = new ArrayList<>();
+        roomTypes.add("-- select a room type --");
+        roomTypes.add("Classroom");
+        roomTypes.add("Utility");
+        // Add more room types as needed
+        return roomTypes;
+    }
+
+    private List<String> generateRoomTypesForBuildingX() {
+        // TODO: Add your logic to generate room types for Building X
+        List<String> roomTypes = new ArrayList<>();
+        roomTypes.add("Classroom");
+        roomTypes.add("Utility");
+        return roomTypes;
+    }
+
+    private List<String> generateRoomTypesForBuildingY() {
+        // TODO: Add your logic to generate room types for Building Y
+        List<String> roomTypes = new ArrayList<>();
+        roomTypes.add("Classroom");
+        roomTypes.add("Utility");
+        return roomTypes;
+    }
+
+    private void updateSpinnerStatus(String selectedBuilding, Spinner roomTypeSpinner, Spinner roomSpinner) {
+        // Check the selected building and decide whether to enable or disable the spinners
+        boolean enableSpinners = true; // Change this based on your logic
+
+        // Enable or disable the spinners accordingly
+        roomTypeSpinner.setEnabled(enableSpinners);
+        roomSpinner.setEnabled(enableSpinners);
+    }
+
     public void accessHomeScreen(View view) {
         finish();
     }

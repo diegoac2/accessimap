@@ -98,7 +98,13 @@
             android:layout_height="48sp"
             android:background="@drawable/spinner_background"
             android:prompt="@string/roomnum"></Spinner>
-
+        <Spinner
+            android:id="@+id/room_type_spinner_to"
+            style="@style/AutoCompleteText"
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:background="@drawable/spinner_background"
+            android:prompt="@string/roomnum"></Spinner>
         <Spinner
             android:id="@+id/room_spinner_to"
             style="@style/AutoCompleteText"
