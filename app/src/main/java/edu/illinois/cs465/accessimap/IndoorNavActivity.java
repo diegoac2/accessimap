@@ -2,6 +2,7 @@ package edu.illinois.cs465.accessimap;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +22,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.InputStream;
+import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -245,7 +252,7 @@ public class IndoorNavActivity extends AppCompatActivity {
                 builder.setCancelable(true);
                 builder.setTitle("End navigation");
                 builder.setMessage("You are about to end your navigation.");
-                builder.setPositiveButton("OK",
+                builder.setPositiveButton("Exit",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -256,15 +263,88 @@ public class IndoorNavActivity extends AppCompatActivity {
                                 startActivity(i);
                             }
                         });
-                builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
+                builder.setNegativeButton("Save Trip and Exit",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Save the current path to a text file
+                                savePathToFile();
+
+                                // Return to the home screen
+                                curr_floor_i = 0; // TODO: A small bug arises if the user "leaves" navigation using the swipe motion.
+                                Intent i = new Intent(IndoorNavActivity.this, MainActivity.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(i);
+                            }
+                        });
+
+                builder.setNeutralButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+
 
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }
+            // ... (previous code)
+
+            // Add a method to save the current path to a text file
+            private void savePathToFile() {
+                try {
+                    // Create a StringBuilder to build the path information
+                    StringBuilder pathInfo = new StringBuilder();
+
+                    // Append information about the building and room
+                    pathInfo.append("Building: ").append(selectedBuildingTo).append("\n");
+                    pathInfo.append("Room: ").append(selectedRoomTo).append("\n");
+
+                    // Append information about the floors visited
+                    for (int i = 0; i < num_waypoints.length; i++) {
+                        pathInfo.append("Floor ").append(i + 1).append(": ").append(floors[floor_order[i]]).append("\n");
+                    }
+
+                    // Define the file name and path
+                    String fileName = "path_information.txt";
+                    String filePath = getFilesDir() + "/" + fileName;
+
+                    // Write the path information to the file
+                    FileOutputStream outputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
+                    outputStream.write(pathInfo.toString().getBytes());
+                    outputStream.close();
+
+                    // Optionally, you can show a Toast or log a message indicating that the path has been saved
+                    Toast.makeText(IndoorNavActivity.this, "Path saved to " + filePath, Toast.LENGTH_SHORT).show();
+
+                    // Read the contents of the file and log them
+                    FileInputStream inputStream = openFileInput(fileName);
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                    StringBuilder fileContents = new StringBuilder();
+                    String line;
+
+                    while ((line = reader.readLine()) != null) {
+                        fileContents.append(line).append('\n');
+                    }
+
+                    // Log the file contents
+                    Log.d("FileContents", "Contents of the file:\n" + fileContents.toString());
+
+                    // Close the input streams
+                    reader.close();
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e("TAG", "Error saving path to file: " + e.getMessage());
+                    // Optionally, you can show an error message to the user
+                    Toast.makeText(IndoorNavActivity.this, "Error saving path to file", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+// ... (rest of the code)
+
         });
 
         // Create an up button

@@ -103,6 +103,26 @@
                     style="@style/Card"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="2dp"
+                    android:onClick="openIndoorNav3"
+                    android:layout_gravity="center"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center" >
+
+                        <TextView style="@style/CardText" android:textStyle="bold" android:textColor="@color/dark_blue" android:text="Siebel Center for Design"/>
+                        <TextView style="@style/CardText" android:text="Currently Saved" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    style="@style/Card"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="2dp"
                     android:layout_gravity="center" >
 
                     <!-- Add content to the CardView here -->
