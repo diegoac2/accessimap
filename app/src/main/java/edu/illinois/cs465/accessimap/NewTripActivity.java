@@ -28,6 +28,7 @@ public class NewTripActivity extends AppCompatActivity implements AdapterView.On
 
     private Spinner toLocationSpinner;
     private ArrayAdapter<CharSequence> toLocationSiebelAdapter;
+    private ArrayAdapter<CharSequence> toRestroomSiebelAdapter;
     private ArrayAdapter<CharSequence> toLocationCifAdapter;
 
     private static final String rampElevatorBody = "Do you prefer routes with ramps or with elevators?";
@@ -103,6 +104,12 @@ public class NewTripActivity extends AppCompatActivity implements AdapterView.On
                 android.R.layout.simple_spinner_item
         );
         toLocationSiebelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        toRestroomSiebelAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.select_siebel_restrooms,
+                android.R.layout.simple_spinner_item
+        );
+        toRestroomSiebelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         toLocationCifAdapter = ArrayAdapter.createFromResource(
                 this,
@@ -110,38 +117,49 @@ public class NewTripActivity extends AppCompatActivity implements AdapterView.On
                 android.R.layout.simple_spinner_item
         );
         toLocationCifAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        toLocationSpinner.setAdapter(toLocationSiebelAdapter);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
         Spinner spinner = (Spinner) parent;
+        String selectedNavigationType = (String) parent.getItemAtPosition(pos);
+        String selectedBuildingFrom = (String) parent.getItemAtPosition(pos);
         if(spinner.getId() == R.id.navigation_type) {
-            String selectedNavigationType = (String) parent.getItemAtPosition(pos);
+            selectedNavigationType = (String) parent.getItemAtPosition(pos);
             switch (selectedNavigationType) {
                 case "--select a room type--":
                     navSelectBuildingSpinner.setEnabled(false);
                     break;
                 case "Classrooms":
+                    toLocationSpinner.setAdapter(toLocationSiebelAdapter);
                     navSelectBuildingSpinner.setEnabled(true);
+                    if(selectedBuildingFrom == "--select a classroom--"){
+                        toLocationSpinner.setEnabled(true);
+                    }
+                    toLocationSpinner.setEnabled(true);
                     break;
                 case "Restrooms":
+                    toLocationSpinner.setAdapter(toRestroomSiebelAdapter);
+                    navSelectBuildingSpinner.setEnabled(true);
                 case "Water Fountains":
                     navSelectBuildingSpinner.setEnabled(true);
                     toLocationSpinner.setEnabled(false);
                     break;
             }
         } else if(spinner.getId() == R.id.navigation_type_building_from) {
-            String selectedBuildingFrom = (String) parent.getItemAtPosition(pos);
             switch (selectedBuildingFrom) {
                 case "--select a building--":
                     fromEntranceSpinner.setEnabled(false);
                     break;
                 case "Siebel Center for Design":
                     enableToAndFromSpinners();
-                    toLocationSpinner.setAdapter(toLocationSiebelAdapter);
+                    if(selectedNavigationType == "Classrooms") {
+                        toLocationSpinner.setAdapter(toLocationSiebelAdapter);
+                    }
+                    else if(selectedNavigationType == "Restrooms"){
+                        toLocationSpinner.setAdapter(toRestroomSiebelAdapter);
+                    }
                     break;
                 case "Campus Instructional Facility":
                     enableToAndFromSpinners();

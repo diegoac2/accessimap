@@ -19,8 +19,10 @@
     <string-array name="select_siebel_classrooms">
         <item>--select a classroom--</item>
         <item>Sunrise Studio 1040</item>
-        <item>Restroom</item>
         <item>Amphitheater</item>
+    </string-array>
+    <string-array name="select_siebel_restrooms">
+        <item>Restroom</item>
     </string-array>
     <string-array name="select_cif_classrooms">
         <item>--select a classroom--</item>
