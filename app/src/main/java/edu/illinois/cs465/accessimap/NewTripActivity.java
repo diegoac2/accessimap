@@ -12,24 +12,24 @@ import android.widget.TextView;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class NewTripActivity extends AppCompatActivity
+public class NewTripActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
-    private Spinner buildingSpinnerFrom;
 
-    private Spinner entranceSpinner;
-//    private Spinner roomSpinnerFrom;
-    private Spinner buildingSpinnerTo;
+    private Spinner navSelectRoomTypeSpinner;
+    private ArrayAdapter<CharSequence> navSelectRoomTypeAdapter;
 
-    private Spinner roomSpinnerTo;
+    private Spinner navSelectBuildingSpinner;
+    private ArrayAdapter<CharSequence> navSelectBuildingAdapter;
 
-    // Map to store room options based on the selected building
-    private Map<String, List<String>> buildingRoomMap;
+    private Spinner fromEntranceSpinner;
+    private ArrayAdapter<CharSequence> fromEntranceAdapter;
 
-    private Map<String, List<String>> buildingEntranceMap;
+    private Spinner toLocationSpinner;
+    private ArrayAdapter<CharSequence> toLocationSiebelAdapter;
+    private ArrayAdapter<CharSequence> toLocationCifAdapter;
+
     private static final String rampElevatorBody = "Do you prefer routes with ramps or with elevators?";
 
     @Override
@@ -54,216 +54,121 @@ public class NewTripActivity extends AppCompatActivity
             textView.setVisibility(View.GONE);
             radioGroup.setVisibility(View.GONE);
         }
-        buildingSpinnerFrom = findViewById(R.id.building_spinner_from);
-//        roomSpinnerFrom = findViewById(R.id.room_spinner_from);
-        buildingSpinnerTo = findViewById(R.id.building_spinner_to);
-        roomSpinnerTo = findViewById(R.id.room_spinner_to);
-        entranceSpinner = findViewById(R.id.entrance_spinner);
 
-        // Initialize the buildingRoomMap
-        buildingRoomMap = new HashMap<>();
-        buildingRoomMap.put("Campus Instructional Facility", generateRoomOptionsForBuildingX());
-        buildingRoomMap.put("Siebel Center for Design", generateRoomOptionsForBuildingY());
+        // get spinners
+        navSelectRoomTypeSpinner = (Spinner) findViewById(R.id.navigation_type);
+        navSelectBuildingSpinner = (Spinner) findViewById(R.id.navigation_type_building_from);
+        fromEntranceSpinner = (Spinner) findViewById(R.id.entrance_spinner);
+        toLocationSpinner = (Spinner) findViewById(R.id.room_spinner_to);
 
-        buildingEntranceMap = new HashMap<>();
-        buildingEntranceMap.put("Campus Instructional Facility", generateEntranceOptionsForBuildingX());
-        buildingEntranceMap.put("Siebel Center for Design", generateEntranceOptionsForBuildingY());
+        // we want only the select room type spinner to be enabled at first
+        navSelectBuildingSpinner.setEnabled(false);
+        fromEntranceSpinner.setEnabled(false);
+        toLocationSpinner.setEnabled(false);
 
+        // on item selected, we need to enable/disable spinners according to the values of other spinners
+        navSelectRoomTypeSpinner.setOnItemSelectedListener(this);
+        navSelectBuildingSpinner.setOnItemSelectedListener(this);
+        fromEntranceSpinner.setOnItemSelectedListener(this);
+        toLocationSpinner.setOnItemSelectedListener(this);
 
-        // Set up initial spinner options
-        setUpBuildingSpinner(buildingSpinnerFrom);
-        setUpBuildingSpinner(buildingSpinnerTo);
+        // add adapter to select room type spinner to get started with setting up the options
+        navSelectRoomTypeAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.select_room_type,
+                android.R.layout.simple_spinner_item
+        );
+        navSelectRoomTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        navSelectRoomTypeSpinner.setAdapter(navSelectRoomTypeAdapter);
 
-        // Set up "from" spinner with entrances
-        setUpRoomSpinner(entranceSpinner, buildingSpinnerFrom, true);
-        // Set up "to" spinner with rooms
-        setUpRoomSpinner(roomSpinnerTo, buildingSpinnerTo, false);
+        navSelectBuildingAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.select_building,
+                android.R.layout.simple_spinner_item
+        );
+        navSelectBuildingAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        navSelectBuildingSpinner.setAdapter(navSelectBuildingAdapter);
 
-        setUpEntranceSpinner(entranceSpinner, buildingSpinnerTo);
+        fromEntranceAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.select_entrance,
+                android.R.layout.simple_spinner_item
+        );
+        fromEntranceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        fromEntranceSpinner.setAdapter(fromEntranceAdapter);
 
-        // Call updateEntranceOptions with the initially selected building for "from" spinner
-        String selectedBuildingFrom = buildingSpinnerFrom.getSelectedItem().toString();
-        updateEntranceOptions(selectedBuildingFrom, entranceSpinner);
+        toLocationSiebelAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.select_siebel_classrooms,
+                android.R.layout.simple_spinner_item
+        );
+        toLocationSiebelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-    }
-    private void setUpBuildingSpinner(Spinner spinner) {
-        // Create ArrayAdapter for buildings
-        ArrayAdapter<String> buildingAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
-                generateBuildingOptions());
-        buildingAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        toLocationCifAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.select_cif_classrooms,
+                android.R.layout.simple_spinner_item
+        );
+        toLocationCifAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        // Set the ArrayAdapter for building Spinners
-        spinner.setAdapter(buildingAdapter);
-
-        // Set initial selection to "Select a building"
-        spinner.setSelection(buildingAdapter.getPosition("-- select a building --"));
-
-        // Set item selected listener for building Spinners
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String selectedBuilding = (String) parentView.getItemAtPosition(position);
-
-                // Update room options based on the selected building
-                updateRoomOptions(selectedBuilding, spinner);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // Do nothing here
-            }
-        });
-    }
-
-    private void setUpEntranceSpinner(Spinner entranceSpinner, Spinner buildingSpinner) {
-        // Create ArrayAdapter for entrances
-        ArrayAdapter<String> entranceAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
-                generateEntranceOptions());
-        entranceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        entranceSpinner.setAdapter(entranceAdapter);
-
-        // Set initial selection to "Select an entrance"
-        entranceSpinner.setSelection(entranceAdapter.getPosition("-- select an entrance --"));
-
-        // Set item selected listener for entrance Spinner
-        entranceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // Handle entrance selection if needed
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // Do nothing here
-            }
-        });
+        toLocationSpinner.setAdapter(toLocationSiebelAdapter);
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
-    private void setUpRoomSpinner(Spinner roomSpinner, Spinner buildingSpinner, boolean isFrom) {
-        // Set up room Spinner with an empty list initially
-        ArrayAdapter<String> roomAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new ArrayList<>());
-        roomAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        roomSpinner.setAdapter(roomAdapter);
-        roomSpinner.setEnabled(false);
-
-        // Set item selected listener for room Spinner
-        roomSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // Handle room selection if needed
+        Spinner spinner = (Spinner) parent;
+        if(spinner.getId() == R.id.navigation_type) {
+            String selectedNavigationType = (String) parent.getItemAtPosition(pos);
+            switch (selectedNavigationType) {
+                case "--select a room type--":
+                    navSelectBuildingSpinner.setEnabled(false);
+                    break;
+                case "Classrooms":
+                    navSelectBuildingSpinner.setEnabled(true);
+                    break;
+                case "Restrooms":
+                case "Water Fountains":
+                    navSelectBuildingSpinner.setEnabled(true);
+                    toLocationSpinner.setEnabled(false);
+                    break;
             }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // Do nothing here
+        } else if(spinner.getId() == R.id.navigation_type_building_from) {
+            String selectedBuildingFrom = (String) parent.getItemAtPosition(pos);
+            switch (selectedBuildingFrom) {
+                case "--select a building--":
+                    fromEntranceSpinner.setEnabled(false);
+                    break;
+                case "Siebel Center for Design":
+                    enableToAndFromSpinners();
+                    toLocationSpinner.setAdapter(toLocationSiebelAdapter);
+                    break;
+                case "Campus Instructional Facility":
+                    enableToAndFromSpinners();
+                    toLocationSpinner.setAdapter(toLocationCifAdapter);
+                    break;
             }
-        });
-
-        // Set item selected listener for building Spinner
-        buildingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String selectedBuilding = (String) parentView.getItemAtPosition(position);
-
-                // Update room options based on the selected building
-                if (isFrom) {
-                    // For the "from" spinner, update with entrances
-                    updateEntranceOptions(selectedBuilding, roomSpinner);
-                } else {
-                    // For the "to" spinner, update with rooms
-                    updateRoomOptions(selectedBuilding, roomSpinner);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // Do nothing here
-            }
-        });
-    }
-    private void updateRoomOptions(String selectedBuilding, Spinner roomSpinner) {
-        // Update room options based on the selected building
-        List<String> roomOptions = buildingRoomMap.get(selectedBuilding);
-        ArrayAdapter<String> roomAdapter = (ArrayAdapter<String>) roomSpinner.getAdapter();
-        if (roomOptions != null) {
-            roomAdapter.clear();
-            roomAdapter.addAll(roomOptions);
-            roomAdapter.notifyDataSetChanged();
-            roomSpinner.setEnabled(true);
-        } else {
-            // Handle the case where roomOptions is null (optional)
-            // You might want to set roomSpinner to a default state or log an error.
-            roomAdapter.clear();
-            roomAdapter.notifyDataSetChanged();
-            roomSpinner.setEnabled(false);
+        } else if (spinner.getId() == R.id.entrance_spinner) {
+            String selectedEntrance = (String) parent.getItemAtPosition(pos);
+        } else if (spinner.getId() == R.id.room_spinner_to) {
+            String selectedRoomTo = (String) parent.getItemAtPosition(pos);
         }
+
     }
-    private void updateEntranceOptions(String selectedBuilding, Spinner entranceSpinner) {
-        // Update entrance options based on the selected building
-        List<String> entranceOptions = buildingEntranceMap.get(selectedBuilding);
-        ArrayAdapter<String> entranceAdapter = (ArrayAdapter<String>) entranceSpinner.getAdapter();
-        if (entranceOptions != null) {
-            entranceAdapter.clear();
-            entranceAdapter.addAll(entranceOptions);
-            entranceAdapter.notifyDataSetChanged();
-            entranceSpinner.setEnabled(true);
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback.
+    }
+
+    private void enableToAndFromSpinners() {
+        fromEntranceSpinner.setEnabled(true);
+        if ((navSelectRoomTypeSpinner.getSelectedItem().toString()).equals("Classrooms")) {
+            toLocationSpinner.setEnabled(true);
         } else {
-            // Handle the case where entranceOptions is null (optional)
-            // You might want to set entranceSpinner to a default state or log an error.
-            entranceAdapter.clear();
-            entranceAdapter.notifyDataSetChanged();
-            entranceSpinner.setEnabled(false);
+            toLocationSpinner.setEnabled(false);
         }
     }
 
-    private List<String> generateBuildingOptions() {
-        List<String> buildings = new ArrayList<>();
-        buildings.add("-- select a building --");
-        buildings.add("Campus Instructional Facility");
-        buildings.add("Siebel Center for Design");
-        return buildings;
-    }
-
-    private List<String> generateEntranceOptions() {
-        List<String> entrances = new ArrayList<>();
-        entrances.add("-- select an entrance --");
-        entrances.add("East Side");
-        entrances.add("West Side");
-        return entrances;
-    }
-    private List<String> generateEntranceOptionsForBuildingX() {
-        // TODO: Add your logic to generate entrance options for Building X
-        List<String> entrances = new ArrayList<>();
-        entrances.add("Entrance A");
-        entrances.add("Entrance B");
-        return entrances;
-    }
-    private List<String> generateEntranceOptionsForBuildingY() {
-        // TODO: Add your logic to generate entrance options for Building Y
-        List<String> entrances = new ArrayList<>();
-        entrances.add("East Side");
-        entrances.add("West Side");
-        return entrances;
-    }
-    private List<String> generateRoomOptionsForBuildingX() {
-        // TODO: Add your logic to generate room options for Building X
-        List<String> rooms = new ArrayList<>();
-        rooms.add("Room X1");
-        rooms.add("Room X2");
-        rooms.add("Room X3");
-        return rooms;
-    }
-
-    private List<String> generateRoomOptionsForBuildingY() {
-        // TODO: Add your logic to generate room options for Building Y
-        List<String> rooms = new ArrayList<>();
-        rooms.add("Amphitheater");
-        rooms.add("Sunrise Studio 1040");
-        rooms.add("Restroom");
-        return rooms;
-    }
     public void accessHomeScreen(View view) {
         finish();
     }
@@ -271,16 +176,14 @@ public class NewTripActivity extends AppCompatActivity
     // TODO - fix button linking to according nav page
     public void openIndoorNav(View view) {
         // Retrieve the selected building and room from Spinners
-        String selectedBuildingFrom = buildingSpinnerFrom.getSelectedItem().toString();
-//        String selectedRoomFrom = roomSpinnerFrom.getSelectedItem().toString();
-        String selectedBuildingTo = buildingSpinnerTo.getSelectedItem().toString();
-        String selectedRoomTo = roomSpinnerTo.getSelectedItem().toString();
+        String selectedBuildingFrom = navSelectBuildingSpinner.getSelectedItem().toString();
+        String selectedRoomTo = toLocationSpinner.getSelectedItem().toString();
 
         // Create an intent to start the next activity
         Intent intent = new Intent(NewTripActivity.this, IndoorNavActivity.class);
 
         // Pass the selected items as extras in the intent
-        intent.putExtra("SELECTED_BUILDING_TO", selectedBuildingTo);
+        intent.putExtra("SELECTED_BUILDING_TO", selectedBuildingFrom);
         intent.putExtra("SELECTED_ROOM_TO", selectedRoomTo);
         // Start the next activity
         startActivity(intent);

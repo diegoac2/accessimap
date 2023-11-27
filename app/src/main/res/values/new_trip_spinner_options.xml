@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="select_room_type">
+        <item>--select a room type--</item>
+        <item>Restrooms</item>
+        <item>Water Fountains</item>
+        <item>Classrooms</item>
+    </string-array>
+    <string-array name="select_building">
+        <item>--select a building--</item>
+        <item>Siebel Center for Design</item>
+        <item>Campus Instructional Facility</item>
+    </string-array>
+    <string-array name="select_entrance">
+        <item>--select an entrance--</item>
+        <item>West entrance</item>
+        <item>East entrance</item>
+    </string-array>
+    <string-array name="select_siebel_classrooms">
+        <item>--select a classroom--</item>
+        <item>Room siebel 1</item>
+        <item>Room siebel 2</item>
+    </string-array>
+    <string-array name="select_cif_classrooms">
+        <item>--select a classroom--</item>
+        <item>Room cif 1</item>
+        <item>Room cif 2</item>
+    </string-array>
+
+
+
+</resources>
+
+

@@ -37,7 +37,8 @@
 
             <TextView
                 style="@style/PageTitle"
-                android:layout_marginRight="90dp"
+                android:gravity="left"
+                android:includeFontPadding="true"
                 android:text="@string/new_trip"
                 tools:layout_editor_absoluteX="0dp" />
 
@@ -51,18 +52,34 @@
 
         <TextView
             style="@style/HeaderText"
-            android:id="@+id/settingsbody_from"
-            android:text="FROM"
+            android:id="@+id/settingsbody_nav_type"
+            android:text="NAVIGATION TYPE"
             tools:layout_editor_absoluteX="94dp"
             tools:layout_editor_absoluteY="83dp" />
 
         <Spinner
-            android:id="@+id/building_spinner_from"
+            android:id="@+id/navigation_type"
             style="@style/AutoCompleteText"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@drawable/spinner_background"
             android:prompt="@string/building"></Spinner>
+
+        <Spinner
+            android:id="@+id/navigation_type_building_from"
+            style="@style/AutoCompleteText"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/spinner_background"
+            android:prompt="@string/building"></Spinner>
+
+        <TextView
+            style="@style/HeaderText"
+            android:id="@+id/settingsbody_from"
+            android:text="FROM"
+            tools:layout_editor_absoluteX="94dp"
+            tools:layout_editor_absoluteY="83dp" />
+
 
         <Spinner
             android:id="@+id/entrance_spinner"
@@ -79,25 +96,6 @@
             android:text="TO"
             tools:layout_editor_absoluteX="94dp"
             tools:layout_editor_absoluteY="83dp" />
-
-
-
-<!--        <Spinner-->
-<!--            android:id="@+id/utility_spinner_to"-->
-<!--            style="@style/AutoCompleteText"-->
-<!--            android:background="@drawable/spinner_background"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="40sp"-->
-<!--            android:prompt="@string/enter_utility_type">-->
-<!--        </Spinner>-->
-
-        <Spinner
-            android:id="@+id/building_spinner_to"
-            style="@style/AutoCompleteText"
-            android:layout_width="match_parent"
-            android:layout_height="48sp"
-            android:background="@drawable/spinner_background"
-            android:prompt="@string/roomnum"></Spinner>
 
         <Spinner
             android:id="@+id/room_spinner_to"
