@@ -77,7 +77,7 @@ public class NewTripActivity extends AppCompatActivity implements AdapterView.On
         navSelectRoomTypeAdapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.select_room_type,
-                android.R.layout.simple_spinner_item
+                R.layout.custom_spinner_item  // Use the custom layout
         );
         navSelectRoomTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         navSelectRoomTypeSpinner.setAdapter(navSelectRoomTypeAdapter);
@@ -85,7 +85,7 @@ public class NewTripActivity extends AppCompatActivity implements AdapterView.On
         navSelectBuildingAdapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.select_building,
-                android.R.layout.simple_spinner_item
+                R.layout.custom_spinner_item  // Use the custom layout
         );
         navSelectBuildingAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         navSelectBuildingSpinner.setAdapter(navSelectBuildingAdapter);
@@ -93,7 +93,7 @@ public class NewTripActivity extends AppCompatActivity implements AdapterView.On
         fromEntranceAdapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.select_entrance,
-                android.R.layout.simple_spinner_item
+                R.layout.custom_spinner_item  // Use the custom layout
         );
         fromEntranceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         fromEntranceSpinner.setAdapter(fromEntranceAdapter);
@@ -101,20 +101,20 @@ public class NewTripActivity extends AppCompatActivity implements AdapterView.On
         toLocationSiebelAdapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.select_siebel_classrooms,
-                android.R.layout.simple_spinner_item
+                R.layout.custom_spinner_item  // Use the custom layout
         );
         toLocationSiebelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         toRestroomSiebelAdapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.select_siebel_restrooms,
-                android.R.layout.simple_spinner_item
+                R.layout.custom_spinner_item  // Use the custom layout
         );
         toRestroomSiebelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         toLocationCifAdapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.select_cif_classrooms,
-                android.R.layout.simple_spinner_item
+                R.layout.custom_spinner_item  // Use the custom layout
         );
         toLocationCifAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     }
