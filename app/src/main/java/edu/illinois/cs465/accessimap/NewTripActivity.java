@@ -203,6 +203,7 @@ public class NewTripActivity extends AppCompatActivity implements AdapterView.On
         // Pass the selected items as extras in the intent
         intent.putExtra("SELECTED_BUILDING_TO", selectedBuildingFrom);
         intent.putExtra("SELECTED_ROOM_TO", selectedRoomTo);
+        intent.putExtra("SAVE_OPTION", "YES");
         // Start the next activity
         startActivity(intent);
 

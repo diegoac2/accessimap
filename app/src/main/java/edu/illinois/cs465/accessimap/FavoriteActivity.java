@@ -35,6 +35,7 @@ public class FavoriteActivity extends AppCompatActivity
 //        intent.putExtra("SELECTED_ROOM_FROM", selectedRoomFrom);
         intent.putExtra("SELECTED_BUILDING_TO", selectedBuildingTo);
         intent.putExtra("SELECTED_ROOM_TO", selectedRoomTo);
+        intent.putExtra("SAVE_OPTION", "NO");
 
         // Start the next activity
         startActivity(intent);
@@ -54,6 +55,7 @@ public class FavoriteActivity extends AppCompatActivity
 //        intent.putExtra("SELECTED_ROOM_FROM", selectedRoomFrom);
         intent.putExtra("SELECTED_BUILDING_TO", selectedBuildingTo);
         intent.putExtra("SELECTED_ROOM_TO", selectedRoomTo);
+        intent.putExtra("SAVE_OPTION", "NO");
 
         // Start the next activity
         startActivity(intent);

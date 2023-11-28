@@ -146,6 +146,7 @@ public class IndoorNavActivity extends AppCompatActivity {
 //        String selectedRoomFrom = getIntent().getStringExtra("SELECTED_ROOM_FROM");
         String selectedBuildingTo = getIntent().getStringExtra("SELECTED_BUILDING_TO");
         String selectedRoomTo = getIntent().getStringExtra("SELECTED_ROOM_TO");
+        String openSaveOption = getIntent().getStringExtra("SAVE_OPTION");
 
         // TODO(1): This function would need to add accessibility options if we want to see a different path based on navigation settings
         loadJson(selectedBuildingTo, selectedRoomTo);
@@ -263,21 +264,24 @@ public class IndoorNavActivity extends AppCompatActivity {
                                 startActivity(i);
                             }
                         });
-                builder.setNegativeButton("Save Trip and Exit",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Save the current path to a text file
-                                savePathToFile();
+                Log.d("SaveOption", "SaveOption:\n" + openSaveOption);
+                if("YES".equals(openSaveOption)) {
+                    Log.d("SaveOption1", "In");
+                    builder.setNegativeButton("Save Trip and Exit",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Save the current path to a text file
+                                    savePathToFile();
 
-                                // Return to the home screen
-                                curr_floor_i = 0; // TODO: A small bug arises if the user "leaves" navigation using the swipe motion.
-                                Intent i = new Intent(IndoorNavActivity.this, MainActivity.class);
-                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(i);
-                            }
-                        });
-
+                                    // Return to the home screen
+                                    curr_floor_i = 0; // TODO: A small bug arises if the user "leaves" navigation using the swipe motion.
+                                    Intent i = new Intent(IndoorNavActivity.this, MainActivity.class);
+                                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(i);
+                                }
+                            });
+                }
                 builder.setNeutralButton("Cancel",
                         new DialogInterface.OnClickListener() {
                             @Override

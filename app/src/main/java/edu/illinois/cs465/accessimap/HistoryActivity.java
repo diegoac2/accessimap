@@ -52,6 +52,7 @@ public class HistoryActivity extends AppCompatActivity
 //        intent.putExtra("SELECTED_ROOM_FROM", selectedRoomFrom);
         intent.putExtra("SELECTED_BUILDING_TO", selectedBuildingTo);
         intent.putExtra("SELECTED_ROOM_TO", selectedRoomTo);
+        intent.putExtra("SAVE_OPTION", "NO");
 
         // Start the next activity
         startActivity(intent);
@@ -71,6 +72,7 @@ public class HistoryActivity extends AppCompatActivity
 //        intent.putExtra("SELECTED_ROOM_FROM", selectedRoomFrom);
         intent.putExtra("SELECTED_BUILDING_TO", selectedBuildingTo);
         intent.putExtra("SELECTED_ROOM_TO", selectedRoomTo);
+        intent.putExtra("SAVE_OPTION", "NO");
 
         // Start the next activity
         startActivity(intent);
@@ -90,6 +92,7 @@ public class HistoryActivity extends AppCompatActivity
             // Pass the selected items as extras in the intent
             intent.putExtra("SELECTED_BUILDING_TO", selectedBuildingTo);
             intent.putExtra("SELECTED_ROOM_TO", selectedRoomTo);
+            intent.putExtra("SAVE_OPTION", "NO");
 
             // Start the next activity
             startActivity(intent);
