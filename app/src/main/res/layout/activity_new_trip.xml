@@ -37,8 +37,9 @@
 
             <TextView
                 style="@style/PageTitle"
-                android:gravity="left"
+                android:gravity="center"
                 android:includeFontPadding="true"
+                android:layout_marginLeft="-215dp"
                 android:text="@string/new_trip"
                 tools:layout_editor_absoluteX="0dp" />
 
