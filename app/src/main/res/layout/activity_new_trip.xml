@@ -63,6 +63,7 @@
             style="@style/AutoCompleteText"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_marginRight="6dp"
             android:background="@drawable/spinner_background"
             android:prompt="@string/building"></Spinner>
 
@@ -71,6 +72,7 @@
             style="@style/AutoCompleteText"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_marginRight="6dp"
             android:background="@drawable/spinner_background"
             android:prompt="@string/building"></Spinner>
 
@@ -87,6 +89,7 @@
             style="@style/AutoCompleteText"
             android:layout_width="match_parent"
             android:layout_height="48sp"
+            android:layout_marginRight="6dp"
             android:background="@drawable/spinner_background"
             android:prompt="@string/select_entrance"></Spinner>
 
@@ -103,6 +106,7 @@
             style="@style/AutoCompleteText"
             android:layout_width="match_parent"
             android:layout_height="48sp"
+            android:layout_marginRight="6dp"
             android:background="@drawable/spinner_background"
             android:prompt="@string/roomnum"></Spinner>
 
