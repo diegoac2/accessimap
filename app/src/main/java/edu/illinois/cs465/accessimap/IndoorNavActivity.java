@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -179,6 +180,9 @@ public class IndoorNavActivity extends AppCompatActivity {
             }
         }
 
+        // get horizontal scroll view component
+        HorizontalScrollView hsv = (HorizontalScrollView)findViewById(R.id.horizontalScrollView);
+
         // Enable certain buttons
         if (curr_waypoint - 1 >= 0) {
             buttons[curr_waypoint - 1].setEnabled(true);
@@ -200,12 +204,17 @@ public class IndoorNavActivity extends AppCompatActivity {
                     if (x == curr_waypoint) { // If the button is clicked, just move the PDF to the set location
                         photoView.setScale((int) curr_zoom[x], (int) curr_x[x], (int) curr_y[x], false);
                         curr_waypoint = buttons[x].getId();
+
                     }
                     else { // Change the current waypoint to be that of the button pressed
                         photoView.setScale((int) curr_zoom[x], (int) curr_x[x], (int) curr_y[x], false);
                         curr_waypoint = buttons[x].getId();
                         buttons[x].setScaleX(1f);
                         buttons[x].setScaleY(1f);
+
+                        // automatically scroll to clicked button
+                        hsv.smoothScrollTo((int)buttons[x].getX(), (int)buttons[x].getY());
+
                         if (x - 1 >= 0) {
                             buttons[x-1].setScaleX(0.75f);
                             buttons[x-1].setScaleY(0.75f);
