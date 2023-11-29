@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.view.View;
@@ -29,7 +30,9 @@ public class NewTripActivity extends AppCompatActivity implements AdapterView.On
     private Spinner toLocationSpinner;
     private ArrayAdapter<CharSequence> toLocationSiebelAdapter;
     private ArrayAdapter<CharSequence> toRestroomSiebelAdapter;
+    private ArrayAdapter<CharSequence> toFountainSiebelAdapter;
     private ArrayAdapter<CharSequence> toLocationCifAdapter;
+    private String currentBuilding;
 
     private static final String rampElevatorBody = "Do you prefer routes with ramps or with elevators?";
 
@@ -110,6 +113,12 @@ public class NewTripActivity extends AppCompatActivity implements AdapterView.On
                 R.layout.custom_spinner_item  // Use the custom layout
         );
         toRestroomSiebelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        toFountainSiebelAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.select_siebel_fountains,
+                R.layout.custom_spinner_item  // Use the custom layout
+        );
+        toFountainSiebelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         toLocationCifAdapter = ArrayAdapter.createFromResource(
                 this,
@@ -134,20 +143,28 @@ public class NewTripActivity extends AppCompatActivity implements AdapterView.On
                 case "Classrooms":
                     toLocationSpinner.setAdapter(toLocationSiebelAdapter);
                     navSelectBuildingSpinner.setEnabled(true);
-                    if(selectedBuildingFrom == "--select a classroom--"){
+                    selectedBuildingFrom = (String) parent.getItemAtPosition(pos);
+                    Log.d("checkBDNG1", currentBuilding);
+                    if(currentBuilding == "--select a building--") {
+                        toLocationSpinner.setEnabled(false);
+                    }
+                    else {
                         toLocationSpinner.setEnabled(true);
                     }
-                    toLocationSpinner.setEnabled(true);
                     break;
                 case "Restrooms":
                     toLocationSpinner.setAdapter(toRestroomSiebelAdapter);
                     navSelectBuildingSpinner.setEnabled(true);
+                    toLocationSpinner.setEnabled(false);
+                    break;
                 case "Water Fountains":
+                    toLocationSpinner.setAdapter(toFountainSiebelAdapter);
                     navSelectBuildingSpinner.setEnabled(true);
                     toLocationSpinner.setEnabled(false);
                     break;
             }
         } else if(spinner.getId() == R.id.navigation_type_building_from) {
+            currentBuilding = selectedBuildingFrom;
             switch (selectedBuildingFrom) {
                 case "--select a building--":
                     fromEntranceSpinner.setEnabled(false);
@@ -156,14 +173,33 @@ public class NewTripActivity extends AppCompatActivity implements AdapterView.On
                     enableToAndFromSpinners();
                     if(selectedNavigationType == "Classrooms") {
                         toLocationSpinner.setAdapter(toLocationSiebelAdapter);
+                        toLocationSpinner.setEnabled(true);
                     }
                     else if(selectedNavigationType == "Restrooms"){
                         toLocationSpinner.setAdapter(toRestroomSiebelAdapter);
                     }
+                    else if (selectedNavigationType == "Water Fountains") {
+                        toLocationSpinner.setAdapter(toFountainSiebelAdapter);
+                    }
+                    if(selectedBuildingFrom == "--select a classroom--"){
+                        toLocationSpinner.setEnabled(true);
+                    }
                     break;
                 case "Campus Instructional Facility":
                     enableToAndFromSpinners();
-                    toLocationSpinner.setAdapter(toLocationCifAdapter);
+                    if(selectedNavigationType == "Classrooms") {
+                        toLocationSpinner.setAdapter(toLocationCifAdapter);
+                        toLocationSpinner.setEnabled(true);
+                    }
+                    else if(selectedNavigationType == "Restrooms"){
+                        toLocationSpinner.setAdapter(toRestroomSiebelAdapter);
+                    }
+                    else if (selectedNavigationType == "Water Fountains") {
+                        toLocationSpinner.setAdapter(toFountainSiebelAdapter);
+                    }
+                    if(selectedBuildingFrom == "--select a classroom--"){
+                        toLocationSpinner.setEnabled(true);
+                    }
                     break;
             }
         } else if (spinner.getId() == R.id.entrance_spinner) {

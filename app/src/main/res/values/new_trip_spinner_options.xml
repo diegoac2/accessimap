@@ -24,6 +24,9 @@
     <string-array name="select_siebel_restrooms">
         <item>Restroom</item>
     </string-array>
+    <string-array name="select_siebel_fountains">
+        <item>Water Fountain</item>
+    </string-array>
     <string-array name="select_cif_classrooms">
         <item>--select a classroom--</item>
         <item>Room cif 1</item>
